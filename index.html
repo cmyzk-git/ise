@@ -579,39 +579,40 @@ function closeNote() {
             }, 3000);
         }
 
-        // スクロールアニメーション
+       // 1. スクロールアニメーション（既存のコードがある場合、ここに残します）
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
-                if (entry.isIntersecting) entry.target.classList.add('active');
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
             });
         }, { threshold: 0.1 });
+
         document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-// --- ホバー ---
+        // 2. 編集後記（Postscript）の制御
+        function openNote() {
+            const modal = document.getElementById('postscript-modal');
+            if (!modal) return;
+            modal.classList.remove('pointer-events-none', 'opacity-0');
+            modal.classList.add('opacity-100');
+            
+            document.querySelectorAll('.reveal-note').forEach((el, i) => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(10px)';
+                el.style.transition = 'all 1.5s ease';
+                setTimeout(() => {
+                    el.style.opacity = '1';
+                    el.style.transform = 'translateY(0)';
+                }, 500 + (i * 800));
+            });
+        }
 
-    function openNote() {
-        const modal = document.getElementById('postscript-modal');
-        if (!modal) return;
-        modal.classList.remove('pointer-events-none', 'opacity-0');
-        modal.classList.add('opacity-100');
-        
-        document.querySelectorAll('.reveal-note').forEach((el, i) => {
-            el.style.opacity = '0';
-            el.style.transform = 'translateY(10px)';
-            el.style.transition = 'all 1.5s ease';
-            setTimeout(() => {
-                el.style.opacity = '1';
-                el.style.transform = 'translateY(0)';
-            }, 500 + (i * 800));
-        });
-    }
-
-    function closeNote() {
-        const modal = document.getElementById('postscript-modal');
-        if (!modal) return;
-        modal.classList.add('opacity-0', 'pointer-events-none');
-        modal.classList.remove('opacity-100');
-    }
-</script>
-</body>
+        function closeNote() {
+            const modal = document.getElementById('postscript-modal');
+            if (!modal) return;
+            modal.classList.add('opacity-0', 'pointer-events-none');
+            modal.classList.remove('opacity-100');
+        }
+    </script> </body>
 </html>
