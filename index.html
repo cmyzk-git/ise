@@ -447,29 +447,6 @@
                         </svg>
                     </div>
                     <span class="text-[11px] font-bold tracking-[0.4em] text-stone-400 group-hover:text-olive-800 transition-all">バスケットを確認する</span>
-                    // スクリプトの一番最後、 </script> の直前に追加してください
-function openNote() {
-    const modal = document.getElementById('postscript-modal');
-    modal.classList.remove('pointer-events-none', 'opacity-0');
-    modal.classList.add('opacity-100');
-    
-    // 中の文章を順番にふわっと出す
-    document.querySelectorAll('.reveal-note').forEach((el, i) => {
-        el.style.opacity = '0';
-        el.style.transform = 'translateY(10px)';
-        el.style.transition = 'all 1.5s ease';
-        setTimeout(() => {
-            el.style.opacity = '1';
-            el.style.transform = 'translateY(0)';
-        }, 500 + (i * 800));
-    });
-}
-
-function closeNote() {
-    const modal = document.getElementById('postscript-modal');
-    modal.classList.add('opacity-0', 'pointer-events-none');
-    modal.classList.remove('opacity-100');
-}
                 </a>
             </div>
 
@@ -590,29 +567,20 @@ function closeNote() {
 
         document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-        // 2. 編集後記（Postscript）の制御
-        function openNote() {
-            const modal = document.getElementById('postscript-modal');
-            if (!modal) return;
-            modal.classList.remove('pointer-events-none', 'opacity-0');
-            modal.classList.add('opacity-100');
-            
-            document.querySelectorAll('.reveal-note').forEach((el, i) => {
-                el.style.opacity = '0';
-                el.style.transform = 'translateY(10px)';
-                el.style.transition = 'all 1.5s ease';
-                setTimeout(() => {
-                    el.style.opacity = '1';
-                    el.style.transform = 'translateY(0)';
-                }, 500 + (i * 800));
-            });
-        }
-
-        function closeNote() {
-            const modal = document.getElementById('postscript-modal');
-            if (!modal) return;
-            modal.classList.add('opacity-0', 'pointer-events-none');
-            modal.classList.remove('opacity-100');
-        }
+       // 2. 編集後記（Postscript）の制御
+    function openNote() {
+        const modal = document.getElementById('postscript-modal');
+        if (!modal) return;
+        modal.classList.remove('pointer-events-none', 'opacity-0');
+        modal.classList.add('opacity-100');
+        // ... (残りのコード)
+    }
+    
+    function closeNote() {
+        const modal = document.getElementById('postscript-modal');
+        if (!modal) return;
+        modal.classList.add('opacity-0', 'pointer-events-none');
+        modal.classList.remove('opacity-100');
+    }
     </script> </body>
 </html>
