@@ -587,29 +587,34 @@ function closeNote() {
         }, { threshold: 0.1 });
         document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-        // スクリプトの一番最後 </script> 
-function openNote() {
-    const modal = document.getElementById('postscript-modal');
-    modal.classList.remove('pointer-events-none', 'opacity-0');
-    modal.classList.add('opacity-100');
-    
-    // 中の文章を順番にふわっと出す
-    document.querySelectorAll('.reveal-note').forEach((el, i) => {
-        el.style.opacity = '0';
-        el.style.transform = 'translateY(10px)';
-        el.style.transition = 'all 1.5s ease';
-        setTimeout(() => {
-            el.style.opacity = '1';
-            el.style.transform = 'translateY(0)';
-        }, 500 + (i * 800));
-    });
-}
+<script>
+    // --- ホバー追加 ---
+    function openNote() {
+        const modal = document.getElementById('postscript-modal');
+        if (!modal) return; // エラー防止
+        modal.classList.remove('pointer-events-none', 'opacity-0');
+        modal.classList.add('opacity-100');
+        
+        document.querySelectorAll('.reveal-note').forEach((el, i) => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(10px)';
+            el.style.transition = 'all 1.5s ease';
+            setTimeout(() => {
+                el.style.opacity = '1';
+                el.style.transform = 'translateY(0)';
+            }, 500 + (i * 800));
+        });
+    }
 
-function closeNote() {
-    const modal = document.getElementById('postscript-modal');
-    modal.classList.add('opacity-0', 'pointer-events-none');
-    modal.classList.remove('opacity-100');
-}
+    function closeNote() {
+        const modal = document.getElementById('postscript-modal');
+        if (!modal) return;
+        modal.classList.add('opacity-0', 'pointer-events-none');
+        modal.classList.remove('opacity-100');
+    }
+    // --- ここまで追加 ---
+
+</script>
     </script>
 </body>
 </html>
