@@ -447,6 +447,29 @@
                         </svg>
                     </div>
                     <span class="text-[11px] font-bold tracking-[0.4em] text-stone-400 group-hover:text-olive-800 transition-all">バスケットを確認する</span>
+                    // スクリプトの一番最後、 </script> の直前に追加してください
+function openNote() {
+    const modal = document.getElementById('postscript-modal');
+    modal.classList.remove('pointer-events-none', 'opacity-0');
+    modal.classList.add('opacity-100');
+    
+    // 中の文章を順番にふわっと出す
+    document.querySelectorAll('.reveal-note').forEach((el, i) => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(10px)';
+        el.style.transition = 'all 1.5s ease';
+        setTimeout(() => {
+            el.style.opacity = '1';
+            el.style.transform = 'translateY(0)';
+        }, 500 + (i * 800));
+    });
+}
+
+function closeNote() {
+    const modal = document.getElementById('postscript-modal');
+    modal.classList.add('opacity-0', 'pointer-events-none');
+    modal.classList.remove('opacity-100');
+}
                 </a>
             </div>
 
@@ -460,30 +483,6 @@
     </button>
 </div>
 
-<div id="postscript-modal" class="fixed inset-0 z-[100] bg-stone-900/95 backdrop-blur-sm flex items-center justify-center opacity-0 pointer-events-none transition-all duration-1000">
-    <div class="max-w-xl px-10 text-center">
-        <div class="text-white/30 text-[10px] tracking-[0.5em] mb-12">編集後記</div>
-        <div class="space-y-8 text-white/80 serif leading-loose text-sm md:text-base">
-            <p class="reveal-note">
-                このページは、井上誠耕園さんの門を叩くにあたり、<br>
-                どうしても抑えきれなかった衝動から生まれました。
-            </p>
-            <p class="reveal-note">
-                効率や便利さが優先される時代だからこそ、<br>
-                土にまみれ、嘘をつかず、時間をかけて一滴を絞り出す。<br>
-                その「正しさ」を、技術と言葉で守りたいと考えたのです。
-            </p>
-            <p class="reveal-note">
-                これは私にとっての、最初の一滴です。<br>
-                いつか共に、本物の実りを耕せる日を願って。
-            </p>
-        </div>
-        <button onclick="closeNote()" class="mt-16 text-white/40 text-[9px] tracking-widest hover:text-white transition-colors">
-            CLOSE
-        </button>
-    </div>
-</div>
-    
     <!-- フッター -->
     <footer class="py-16 bg-white border-t border-stone-100">
         <div class="max-w-7xl mx-auto px-8 flex flex-col md:flex-row justify-between items-center gap-8">
@@ -587,6 +586,30 @@
             });
         }, { threshold: 0.1 });
         document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        // スクリプトの一番最後 </script> 
+function openNote() {
+    const modal = document.getElementById('postscript-modal');
+    modal.classList.remove('pointer-events-none', 'opacity-0');
+    modal.classList.add('opacity-100');
+    
+    // 中の文章を順番にふわっと出す
+    document.querySelectorAll('.reveal-note').forEach((el, i) => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(10px)';
+        el.style.transition = 'all 1.5s ease';
+        setTimeout(() => {
+            el.style.opacity = '1';
+            el.style.transform = 'translateY(0)';
+        }, 500 + (i * 800));
+    });
+}
+
+function closeNote() {
+    const modal = document.getElementById('postscript-modal');
+    modal.classList.add('opacity-0', 'pointer-events-none');
+    modal.classList.remove('opacity-100');
+}
     </script>
 </body>
 </html>
