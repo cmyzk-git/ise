@@ -587,11 +587,11 @@ function closeNote() {
         }, { threshold: 0.1 });
         document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-<script>
-    // --- ホバー追加 ---
+// --- ホバー ---
+
     function openNote() {
         const modal = document.getElementById('postscript-modal');
-        if (!modal) return; // エラー防止
+        if (!modal) return;
         modal.classList.remove('pointer-events-none', 'opacity-0');
         modal.classList.add('opacity-100');
         
@@ -612,8 +612,8 @@ function closeNote() {
         modal.classList.add('opacity-0', 'pointer-events-none');
         modal.classList.remove('opacity-100');
     }
-    // --- ここまで追加 ---
-
 </script>
+</body>
+</html>
 </body>
 </html>
