@@ -454,34 +454,48 @@
     </div>
 </section>
 
-  <!-- Postscript セクション -->
-<div class="mt-20 opacity-40 hover:opacity-100 transition-opacity duration-1000 text-center pb-16">
-    <button onclick="openNote()" class="text-[9px] tracking-[0.5em] uppercase border-b border-stone-300 pb-1">
-        Postscript
-    </button>
-</div>
+<!-- バスケットセクションの直後 -->
+
+<section class="py-20 bg-gradient-to-b from-white to-stone-50 border-t border-stone-100">
+    <div class="max-w-3xl mx-auto px-8">
+        <div class="bg-stone-900 rounded-lg p-12 text-center">
+            <p class="text-white/60 text-[11px] tracking-[0.4em] mb-6">
+                ご覧いただきありがとうございます
+            </p>
+            
+            <h3 class="text-white serif text-xl mb-6">
+                このサイトについて
+            </h3>
+            
+            <p class="text-white/70 text-sm leading-relaxed mb-10">
+                このポートフォリオがどのような想いで作られたかをお聞かせしています。
+            </p>
+            
+            <button onclick="openNote()" class="inline-block bg-olive-700 hover:bg-olive-800 text-white px-8 py-3 text-[11px] font-bold tracking-widest transition-colors">
+                制作の背景を読む →
+            </button>
+        </div>
+    </div>
+</section>
 
 <!-- Postscript モーダル -->
 <div id="postscript-modal" class="fixed inset-0 z-[100] bg-stone-900/95 backdrop-blur-sm flex items-center justify-center opacity-0 pointer-events-none transition-all duration-1000">
     <div class="max-w-xl px-10 text-center">
-        <div class="text-white/30 text-[10px] tracking-[0.5em] mb-12">編集後記</div>
+        <div class="text-white/30 text-[10px] tracking-[0.5em] mb-12">制作の背景</div>
         <div class="space-y-8 text-white/80 serif leading-loose text-sm md:text-base">
             <p class="reveal-note">
-    このページは、井上誠耕園さんの「誠実」という哲学に惹かれ、<br>
-    その想いをデジタルで表現したいという、<br>
-    素直な衝動から生まれました。
-</p>
-<p class="reveal-note">
-    デザインと技術は、ブランドの心を<br>
-    生活者に届ける道具だと考えています。<br>
-    細部へのこだわり、ユーザー体験への向き合い方。<br>
-    そうした誠実さを、これからのお仕事でも大切にしたいのです。
-</p>
-<p class="reveal-note">
-    これは、私のまだ始まったばかりの物語です。<br>
-    もしよろしければ、一緒に本当の価値を創造する時間を<br>
-    ご一緒させて頂けたら幸いです。
-</p>
+                このページは、井上誠耕園さんの「誠実」という哲学に惹かれ、<br>
+                その想いをデジタルで表現したいという、素直な衝動から生まれました。
+            </p>
+            <p class="reveal-note">
+                デザインと技術は、ブランドの心をユーザーに届ける道具だと考えています。<br>
+                細部へのこだわり、ユーザー体験への向き合い方。<br>
+                そうした誠実さを、これからのお仕事でも大切にしたいのです。
+            </p>
+            <p class="reveal-note">
+                これは、私のまだ始まったばかりの物語です。<br>
+                もしよろしければ、一緒に本当の価値を創造する時間をご一緒させて頂けたら幸いです。
+            </p>
         </div>
         <button onclick="closeNote()" class="mt-16 text-white/40 text-[9px] tracking-widest hover:text-white transition-colors">
             CLOSE
