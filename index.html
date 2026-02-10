@@ -508,7 +508,6 @@
     ...
 </footer>
 
-    <!-- フッター -->
     <footer class="py-16 bg-white border-t border-stone-100">
         <div class="max-w-7xl mx-auto px-8 flex flex-col md:flex-row justify-between items-center gap-8">
             <div class="text-center md:text-left">
@@ -615,20 +614,41 @@
 
         document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-       // 2. 編集後記（Postscript）の制御
-    function openNote() {
-        const modal = document.getElementById('postscript-modal');
-        if (!modal) return;
-        modal.classList.remove('pointer-events-none', 'opacity-0');
-        modal.classList.add('opacity-100');
-        // ... (残りのコード)
-    }
+      // 2. 編集後記（Postscript）の制御
+function openNote() {
+    const modal = document.getElementById('postscript-modal');
+    if (!modal) return;
     
-    function closeNote() {
-        const modal = document.getElementById('postscript-modal');
-        if (!modal) return;
-        modal.classList.add('opacity-0', 'pointer-events-none');
-        modal.classList.remove('opacity-100');
+    // モーダル表示
+    modal.classList.remove('pointer-events-none', 'opacity-0');
+    modal.classList.add('opacity-100');
+    
+    // 各テキストを順番にふわっと出す
+    document.querySelectorAll('.reveal-note').forEach((el, i) => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(10px)';
+        el.style.transition = 'all 1.5s cubic-bezier(0.22, 1, 0.36, 1)';
+        setTimeout(() => {
+            el.style.opacity = '1';
+            el.style.transform = 'translateY(0)';
+        }, 300 + (i * 400));
+    });
+}
+
+function closeNote() {
+    const modal = document.getElementById('postscript-modal');
+    if (!modal) return;
+    
+    modal.classList.add('opacity-0', 'pointer-events-none');
+    modal.classList.remove('opacity-100');
+}
+
+// モーダル外側をクリックして閉じる
+document.addEventListener('click', (e) => {
+    const modal = document.getElementById('postscript-modal');
+    if (modal && e.target === modal) {
+        closeNote();
     }
+});
     </script> </body>
 </html>
