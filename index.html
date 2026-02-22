@@ -166,6 +166,34 @@
         ::-webkit-scrollbar { width: 6px; }
         ::-webkit-scrollbar-track { background: var(--stone-bg); }
         ::-webkit-scrollbar-thumb { background: #d1d1cc; border-radius: 10px; }
+            /* 通常時：フルカラー、オーバーレイ・文字は非表示 */
+.soldout-img {
+    filter: grayscale(0);
+    opacity: 1;
+    transition: filter 0.8s ease, opacity 0.8s ease;
+}
+.soldout-overlay {
+    background: rgba(0,0,0,0);
+    transition: background 0.8s ease;
+}
+.soldout-label {
+    opacity: 0;
+    transform: translateY(6px);
+    transition: opacity 0.8s ease 0.2s, transform 0.8s ease 0.2s;
+}
+
+/* ホバー時：ゆっくりグレーアウト＋文字浮き出し */
+#card-hayazumi:hover .soldout-img {
+    filter: grayscale(1);
+    opacity: 0.6;
+}
+#card-hayazumi:hover .soldout-overlay {
+    background: rgba(0,0,0,0.05);
+}
+#card-hayazumi:hover .soldout-label {
+    opacity: 1;
+    transform: translateY(0);
+}
     </style>
 </head>
 <body class="antialiased">
@@ -270,10 +298,10 @@
                 <!-- 商品 2: 早摘み（売り切れ / 温度感のある表現） -->
                 <div id="card-hayazumi" class="product-card p-6 flex flex-col reveal" onclick="switchChef('hayazumi')">
                     <div class="aspect-[4/5] overflow-hidden mb-6 relative bg-stone-100">
-                        <img src="ph/extra.jpg" class="w-full h-full object-cover grayscale opacity-60" alt="早摘みオリーブオイル">
-                        <div class="absolute inset-0 flex items-center justify-center">
-                            <span class="bg-white/90 px-4 py-2 text-[10px] serif tracking-widest text-stone-600">次の収穫を待っています</span>
-                        </div>
+                    <img src="ph/extra.jpg" class="soldout-img w-full h-full object-cover" alt="早摘みオリーブオイル">
+                     <div class="soldout-overlay absolute inset-0 flex items-center justify-center">
+                     <span class="soldout-label bg-white/90 px-4 py-2 text-[10px] serif tracking-widest text-stone-600">次の収穫を待っています</span>
+                     </div>
                     </div>
                     <div class="selection-label flex items-center gap-2 mb-3">
                         <span class="w-1.5 h-1.5 bg-olive-800 rounded-full"></span>
