@@ -1,0 +1,1683 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>inOli 第2章 — 祈り、指先から。</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Noto+Serif+JP:wght@200;300;400&family=Noto+Sans+JP:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1a1a1a;
+    --ink-soft: #3a3a3a;
+    --ink-muted: #888;
+    --bg: #fafaf8;
+    --bg-warm: #f5f4f0;
+    --bg-dark: #111110;
+    --gold: #b8975a;
+    --gold-light: #d4b078;
+    --line: #e0ddd8;
+    --line-dark: #2a2a28;
+    --serif-en: 'Cormorant Garamond', serif;
+    --serif-ja: 'Noto Serif JP', serif;
+    --sans-ja: 'Noto Sans JP', sans-serif;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; font-size: 16px; }
+
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--serif-ja);
+    font-weight: 300;
+    line-height: 1.8;
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.2rem 3rem;
+    background: rgba(250,250,248,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--line);
+    transition: all 0.3s ease;
+  }
+
+  nav.dark {
+    background: rgba(17,17,16,0.92);
+    border-bottom: 1px solid var(--line-dark);
+  }
+
+  .nav-logo {
+    font-family: var(--serif-en);
+    font-size: 1.4rem;
+    font-weight: 300;
+    letter-spacing: 0.08em;
+    color: var(--ink);
+    text-decoration: none;
+  }
+
+  nav.dark .nav-logo { color: #f0ede8; }
+
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-family: var(--sans-ja);
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    color: var(--ink-muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  nav.dark .nav-links a { color: #888; }
+  .nav-links a:hover { color: var(--gold); }
+
+  .nav-top-btn {
+    font-family: var(--sans-ja);
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    color: var(--gold);
+    text-decoration: none;
+    border: 1px solid var(--gold);
+    padding: 0.4rem 1rem;
+    transition: all 0.2s;
+  }
+
+  .nav-top-btn:hover {
+    background: var(--gold);
+    color: #fff;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    background: var(--bg-dark);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 8rem 10% 6rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 60% 50% at 80% 40%, rgba(184,151,90,0.08) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 60% at 10% 80%, rgba(184,151,90,0.05) 0%, transparent 60%);
+  }
+
+  .hero-sub {
+    font-family: var(--sans-ja);
+    font-size: 0.7rem;
+    letter-spacing: 0.25em;
+    color: var(--gold);
+    margin-bottom: 2.5rem;
+    opacity: 0;
+    animation: fadeUp 0.8s ease 0.3s forwards;
+  }
+
+  .hero-title {
+    font-family: var(--serif-en);
+    font-size: clamp(3.5rem, 8vw, 7rem);
+    font-weight: 300;
+    line-height: 1.1;
+    color: #f0ede8;
+    letter-spacing: -0.01em;
+    margin-bottom: 0.3rem;
+    opacity: 0;
+    animation: fadeUp 0.8s ease 0.5s forwards;
+  }
+
+  .hero-title-ja {
+    font-family: var(--serif-ja);
+    font-size: clamp(1.1rem, 2.5vw, 1.8rem);
+    font-weight: 200;
+    color: #a09a90;
+    letter-spacing: 0.25em;
+    margin-bottom: 3rem;
+    opacity: 0;
+    animation: fadeUp 0.8s ease 0.7s forwards;
+  }
+
+  .hero-desc {
+    font-family: var(--serif-ja);
+    font-size: 0.95rem;
+    font-weight: 200;
+    color: #706a62;
+    letter-spacing: 0.1em;
+    line-height: 2;
+    max-width: 440px;
+    margin-bottom: 4rem;
+    opacity: 0;
+    animation: fadeUp 0.8s ease 0.9s forwards;
+  }
+
+  .hero-scroll {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    color: #555;
+    font-family: var(--sans-ja);
+    font-size: 0.68rem;
+    letter-spacing: 0.2em;
+    opacity: 0;
+    animation: fadeUp 0.8s ease 1.1s forwards;
+  }
+
+  .hero-scroll-line {
+    width: 40px;
+    height: 1px;
+    background: var(--gold);
+    animation: expandLine 1.2s ease 1.4s both;
+  }
+
+  .hero-chapter-num {
+    position: absolute;
+    right: 8%;
+    bottom: 12%;
+    font-family: var(--serif-en);
+    font-size: clamp(6rem, 15vw, 14rem);
+    font-weight: 300;
+    color: rgba(255,255,255,0.03);
+    line-height: 1;
+    user-select: none;
+    letter-spacing: -0.05em;
+  }
+
+  /* ── SECTIONS ── */
+  section {
+    padding: 7rem 10%;
+    position: relative;
+  }
+
+  section + section {
+    border-top: 1px solid var(--line);
+  }
+
+  .section-label {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    margin-bottom: 3.5rem;
+  }
+
+  .section-num {
+    font-family: var(--serif-en);
+    font-size: 0.75rem;
+    font-weight: 400;
+    letter-spacing: 0.15em;
+    color: var(--gold);
+  }
+
+  .section-title-en {
+    font-family: var(--serif-en);
+    font-size: 0.78rem;
+    letter-spacing: 0.2em;
+    color: var(--ink-muted);
+  }
+
+  .section-divider {
+    flex: 1;
+    height: 1px;
+    background: var(--line);
+  }
+
+  h2 {
+    font-family: var(--serif-ja);
+    font-size: clamp(1.4rem, 3vw, 2.2rem);
+    font-weight: 300;
+    letter-spacing: 0.08em;
+    line-height: 1.5;
+    color: var(--ink);
+    margin-bottom: 2.5rem;
+  }
+
+  h3 {
+    font-family: var(--serif-ja);
+    font-size: 1.05rem;
+    font-weight: 400;
+    letter-spacing: 0.05em;
+    color: var(--ink);
+    margin-bottom: 0.8rem;
+  }
+
+  p {
+    font-size: 0.92rem;
+    color: var(--ink-soft);
+    line-height: 1.9;
+    letter-spacing: 0.04em;
+  }
+
+  /* ── EXECUTIVE SUMMARY ── */
+  .summary-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    margin-top: 3rem;
+  }
+
+  .summary-card {
+    background: var(--bg-warm);
+    padding: 2.5rem 2rem;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+  }
+
+  .summary-card:hover { transform: translateY(-4px); }
+
+  .summary-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 3px; height: 100%;
+    background: var(--gold);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  .summary-card:hover::before { opacity: 1; }
+
+  .card-tag {
+    font-family: var(--sans-ja);
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    color: var(--gold);
+    margin-bottom: 1rem;
+    display: block;
+  }
+
+  .summary-roi {
+    grid-column: 1 / -1;
+    background: var(--ink);
+    color: #f0ede8;
+    padding: 2.5rem 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    flex-wrap: wrap;
+    margin-top: 2px;
+  }
+
+  .roi-item {
+    text-align: center;
+  }
+
+  .roi-num {
+    font-family: var(--serif-en);
+    font-size: 2.5rem;
+    font-weight: 300;
+    color: var(--gold-light);
+    display: block;
+    line-height: 1;
+    margin-bottom: 0.4rem;
+  }
+
+  .roi-label {
+    font-family: var(--sans-ja);
+    font-size: 0.68rem;
+    letter-spacing: 0.15em;
+    color: #888;
+  }
+
+  .roi-divider {
+    width: 1px;
+    height: 50px;
+    background: #333;
+  }
+
+  /* ── INSIGHT ── */
+  .insight-section {
+    background: var(--bg-dark);
+    color: #f0ede8;
+  }
+
+  .insight-section h2 { color: #f0ede8; }
+
+  .insight-flow {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    flex-wrap: wrap;
+    margin: 3rem 0;
+    justify-content: center;
+  }
+
+  .insight-node {
+    text-align: center;
+    padding: 2rem 1.8rem;
+    position: relative;
+    min-width: 140px;
+  }
+
+  .node-circle {
+    width: 80px;
+    height: 80px;
+    border: 1px solid rgba(184,151,90,0.4);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1rem;
+    font-family: var(--serif-ja);
+    font-size: 0.85rem;
+    font-weight: 200;
+    color: var(--gold-light);
+    letter-spacing: 0.1em;
+    transition: all 0.3s;
+  }
+
+  .insight-node:hover .node-circle {
+    background: rgba(184,151,90,0.1);
+    border-color: var(--gold);
+  }
+
+  .node-label {
+    font-family: var(--sans-ja);
+    font-size: 0.68rem;
+    color: #666;
+    letter-spacing: 0.12em;
+  }
+
+  .insight-arrow {
+    font-size: 1.2rem;
+    color: rgba(184,151,90,0.3);
+    padding: 0 0.5rem;
+  }
+
+  .insight-center {
+    text-align: center;
+    padding: 3rem;
+    border: 1px solid rgba(184,151,90,0.2);
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .insight-center-title {
+    font-family: var(--serif-en);
+    font-size: 2.5rem;
+    font-weight: 300;
+    color: var(--gold-light);
+    letter-spacing: 0.1em;
+    margin-bottom: 1rem;
+  }
+
+  .insight-quote {
+    font-family: var(--serif-ja);
+    font-size: 0.88rem;
+    font-weight: 200;
+    color: #888;
+    line-height: 2;
+    letter-spacing: 0.08em;
+  }
+
+  /* ── MARKET ── */
+  .market-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--line);
+    border: 1px solid var(--line);
+    margin: 3rem 0;
+  }
+
+  .stat-box {
+    background: var(--bg);
+    padding: 3rem 2rem;
+    text-align: center;
+  }
+
+  .stat-num {
+    font-family: var(--serif-en);
+    font-size: 3rem;
+    font-weight: 300;
+    color: var(--ink);
+    display: block;
+    line-height: 1;
+    margin-bottom: 0.3rem;
+    letter-spacing: -0.02em;
+  }
+
+  .stat-unit {
+    font-family: var(--serif-ja);
+    font-size: 0.9rem;
+    font-weight: 300;
+    color: var(--ink-soft);
+  }
+
+  .stat-label {
+    font-family: var(--sans-ja);
+    font-size: 0.68rem;
+    letter-spacing: 0.15em;
+    color: var(--ink-muted);
+    display: block;
+    margin-top: 0.5rem;
+  }
+
+  .market-white {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-top: 3rem;
+  }
+
+  .white-item {
+    padding: 2rem 0;
+    border-top: 2px solid var(--line);
+    transition: border-color 0.3s;
+  }
+
+  .white-item:hover { border-top-color: var(--gold); }
+
+  .white-num {
+    font-family: var(--serif-en);
+    font-size: 0.75rem;
+    color: var(--gold);
+    letter-spacing: 0.15em;
+    display: block;
+    margin-bottom: 0.8rem;
+  }
+
+  /* ── CONCEPT ── */
+  .concept-layout {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 5rem;
+    align-items: start;
+    margin-top: 3rem;
+  }
+
+  .product-spec {
+    background: var(--bg-warm);
+    padding: 3rem;
+    border-left: 3px solid var(--gold);
+  }
+
+  .spec-row {
+    display: flex;
+    gap: 1.5rem;
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--line);
+    font-size: 0.88rem;
+  }
+
+  .spec-row:last-child { border-bottom: none; }
+
+  .spec-key {
+    font-family: var(--sans-ja);
+    font-size: 0.68rem;
+    letter-spacing: 0.15em;
+    color: var(--ink-muted);
+    min-width: 80px;
+    padding-top: 0.1rem;
+  }
+
+  .spec-val {
+    color: var(--ink-soft);
+    line-height: 1.7;
+    font-weight: 300;
+  }
+
+  .prayer-trio {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .prayer-item {
+    padding: 1.8rem;
+    border: 1px solid var(--line);
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s;
+  }
+
+  .prayer-item:hover {
+    border-color: var(--gold);
+    background: rgba(184,151,90,0.02);
+  }
+
+  .prayer-icon {
+    font-family: var(--serif-en);
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    color: var(--gold);
+    margin-bottom: 0.6rem;
+    display: block;
+  }
+
+  /* ── CHANNEL ── */
+  .channel-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    margin-top: 3rem;
+  }
+
+  .channel-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+  }
+
+  .channel-item {
+    background: var(--bg-warm);
+    padding: 2rem;
+    border-left: 3px solid transparent;
+    transition: all 0.3s;
+  }
+
+  .channel-item:hover {
+    border-left-color: var(--gold);
+  }
+
+  .channel-rank {
+    font-family: var(--serif-en);
+    font-size: 0.7rem;
+    color: var(--gold);
+    letter-spacing: 0.2em;
+    margin-bottom: 0.5rem;
+    display: block;
+  }
+
+  .no-discount {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .nd-item {
+    display: flex;
+    gap: 1.5rem;
+    align-items: flex-start;
+    padding: 1.5rem;
+    border: 1px solid var(--line);
+  }
+
+  .nd-num {
+    font-family: var(--serif-en);
+    font-size: 1.8rem;
+    font-weight: 300;
+    color: var(--gold);
+    line-height: 1;
+    min-width: 2rem;
+  }
+
+  /* ── PRICE TABLE ── */
+  .price-section { background: var(--bg-warm); }
+
+  .price-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 2.5rem 0;
+    font-size: 0.88rem;
+  }
+
+  .price-table th {
+    font-family: var(--sans-ja);
+    font-size: 0.68rem;
+    letter-spacing: 0.15em;
+    color: var(--ink-muted);
+    padding: 0.8rem 1.5rem;
+    text-align: left;
+    border-bottom: 2px solid var(--ink);
+    font-weight: 400;
+  }
+
+  .price-table td {
+    padding: 1.2rem 1.5rem;
+    border-bottom: 1px solid var(--line);
+    color: var(--ink-soft);
+    vertical-align: top;
+    line-height: 1.6;
+  }
+
+  .price-table tr:hover td { background: rgba(184,151,90,0.04); }
+
+  .price-highlight td {
+    background: var(--ink);
+    color: #f0ede8;
+  }
+
+  .price-highlight td:first-child {
+    border-left: 3px solid var(--gold);
+  }
+
+  .starter-box {
+    background: var(--ink);
+    color: #f0ede8;
+    padding: 3rem;
+    display: flex;
+    gap: 4rem;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-top: 2rem;
+  }
+
+  .starter-num {
+    font-family: var(--serif-en);
+    font-size: 3.5rem;
+    font-weight: 300;
+    color: var(--gold-light);
+    display: block;
+    line-height: 1;
+  }
+
+  /* ── FOOD × BEAUTY ── */
+  .food-beauty {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    margin: 3rem 0;
+    background: var(--line);
+  }
+
+  .fb-panel {
+    background: var(--bg);
+    padding: 3rem 2.5rem;
+    text-align: center;
+  }
+
+  .fb-panel.dark {
+    background: var(--ink);
+    color: #f0ede8;
+  }
+
+  .fb-panel.dark h3 { color: #f0ede8; }
+  .fb-panel.dark p { color: #888; }
+
+  .fb-label {
+    font-family: var(--sans-ja);
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    color: var(--gold);
+    margin-bottom: 1rem;
+    display: block;
+  }
+
+  .fb-icon {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    display: block;
+  }
+
+  .cycle-quote {
+    text-align: center;
+    padding: 3rem;
+    background: var(--bg-warm);
+    font-family: var(--serif-ja);
+    font-size: 0.92rem;
+    font-weight: 300;
+    color: var(--ink-soft);
+    line-height: 2.2;
+    letter-spacing: 0.06em;
+    border-left: 3px solid var(--gold);
+    font-style: italic;
+    margin-top: 2rem;
+  }
+
+  /* ── ROADMAP ── */
+  .roadmap {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2px;
+    background: var(--line);
+    margin: 3rem 0;
+  }
+
+  .phase {
+    background: var(--bg);
+    padding: 2.5rem 1.8rem;
+    position: relative;
+    transition: background 0.3s;
+  }
+
+  .phase:hover { background: var(--bg-warm); }
+
+  .phase-num {
+    font-family: var(--serif-en);
+    font-size: 0.7rem;
+    color: var(--gold);
+    letter-spacing: 0.2em;
+    margin-bottom: 0.3rem;
+    display: block;
+  }
+
+  .phase-period {
+    font-family: var(--sans-ja);
+    font-size: 0.72rem;
+    color: var(--ink-muted);
+    letter-spacing: 0.1em;
+    margin-bottom: 1.2rem;
+    display: block;
+  }
+
+  /* ── ROI ── */
+  .roi-section { background: var(--bg-dark); color: #f0ede8; }
+  .roi-section h2 { color: #f0ede8; }
+
+  .roi-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    margin-top: 3rem;
+  }
+
+  .cost-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+  }
+
+  .cost-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 1.5rem 0;
+    border-bottom: 1px solid var(--line-dark);
+    gap: 1rem;
+  }
+
+  .cost-name {
+    font-family: var(--serif-ja);
+    font-size: 0.88rem;
+    font-weight: 300;
+    color: #c0b9b0;
+    line-height: 1.5;
+  }
+
+  .cost-sub {
+    font-size: 0.72rem;
+    color: #555;
+    display: block;
+    margin-top: 0.3rem;
+  }
+
+  .cost-amount {
+    font-family: var(--serif-en);
+    font-size: 1.1rem;
+    font-weight: 300;
+    color: var(--gold-light);
+    white-space: nowrap;
+  }
+
+  .revenue-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+  }
+
+  .rev-item {
+    padding: 1.8rem;
+    border: 1px solid var(--line-dark);
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1rem;
+    transition: border-color 0.3s;
+  }
+
+  .rev-item:hover { border-color: var(--gold); }
+
+  .rev-num {
+    font-family: var(--serif-en);
+    font-size: 1.8rem;
+    font-weight: 300;
+    color: var(--gold-light);
+    display: block;
+    line-height: 1;
+    margin-bottom: 0.3rem;
+  }
+
+  .rev-label {
+    font-family: var(--serif-ja);
+    font-size: 0.78rem;
+    color: #888;
+    font-weight: 200;
+  }
+
+  .roi-total {
+    grid-column: 1 / -1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 3rem;
+    background: rgba(184,151,90,0.06);
+    border: 1px solid rgba(184,151,90,0.2);
+    flex-wrap: wrap;
+    gap: 2rem;
+    margin-top: 1rem;
+  }
+
+  .roi-total-item { text-align: center; }
+
+  .roi-total-num {
+    font-family: var(--serif-en);
+    font-size: 3rem;
+    font-weight: 300;
+    color: var(--gold-light);
+    display: block;
+    line-height: 1;
+  }
+
+  .roi-total-label {
+    font-family: var(--sans-ja);
+    font-size: 0.68rem;
+    color: #666;
+    letter-spacing: 0.15em;
+    display: block;
+    margin-top: 0.5rem;
+  }
+
+  /* ── CLOSING ── */
+  .closing {
+    background: var(--bg-dark);
+    min-height: 80vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 8rem 10%;
+    position: relative;
+    overflow: hidden;
+    border-top: none;
+  }
+
+  .closing::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 50% 60% at 70% 50%, rgba(184,151,90,0.06) 0%, transparent 70%);
+  }
+
+  .closing-label {
+    font-family: var(--sans-ja);
+    font-size: 0.68rem;
+    letter-spacing: 0.25em;
+    color: var(--gold);
+    margin-bottom: 2rem;
+  }
+
+  .closing-title {
+    font-family: var(--serif-ja);
+    font-size: clamp(2rem, 5vw, 4rem);
+    font-weight: 200;
+    color: #f0ede8;
+    line-height: 1.6;
+    letter-spacing: 0.1em;
+    margin-bottom: 3rem;
+  }
+
+  .closing-title em {
+    font-style: normal;
+    color: var(--gold-light);
+  }
+
+  .closing-bullets {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-bottom: 4rem;
+    max-width: 600px;
+  }
+
+  .closing-bullets li {
+    display: flex;
+    gap: 1.5rem;
+    align-items: flex-start;
+    font-family: var(--serif-ja);
+    font-size: 0.9rem;
+    font-weight: 200;
+    color: #888;
+    line-height: 1.8;
+    letter-spacing: 0.04em;
+  }
+
+  .closing-bullets li::before {
+    content: '—';
+    color: var(--gold);
+    flex-shrink: 0;
+  }
+
+  .closing-footer {
+    font-family: var(--sans-ja);
+    font-size: 0.68rem;
+    letter-spacing: 0.2em;
+    color: #444;
+    position: absolute;
+    bottom: 3rem;
+    left: 10%;
+  }
+
+  /* ── SCROLL PROGRESS ── */
+  .progress-bar {
+    position: fixed;
+    top: 0; left: 0;
+    height: 2px;
+    background: var(--gold);
+    z-index: 200;
+    width: 0%;
+    transition: width 0.1s linear;
+  }
+
+  /* ── SCROLL TO TOP ── */
+  .scroll-top {
+    position: fixed;
+    bottom: 2.5rem;
+    right: 2.5rem;
+    z-index: 100;
+    width: 48px;
+    height: 48px;
+    background: var(--bg-dark);
+    border: 1px solid var(--line-dark);
+    color: #888;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 1rem;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all 0.3s;
+    text-decoration: none;
+  }
+
+  .scroll-top.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .scroll-top:hover {
+    border-color: var(--gold);
+    color: var(--gold);
+  }
+
+  /* ── FADE IN ON SCROLL ── */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+
+  .fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes expandLine {
+    from { width: 0; }
+    to { width: 40px; }
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    section { padding: 5rem 6%; }
+    .hero { padding: 7rem 6% 5rem; }
+    .summary-grid, .market-stats, .roadmap { grid-template-columns: 1fr; }
+    .concept-layout, .channel-grid, .roi-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    .market-white, .food-beauty { grid-template-columns: 1fr; }
+    .summary-roi { flex-direction: column; text-align: center; }
+    .roi-divider { width: 80px; height: 1px; }
+    .closing { padding: 7rem 6% 5rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Progress Bar -->
+<div class="progress-bar" id="progressBar"></div>
+
+<!-- Navigation -->
+<nav id="mainNav">
+  <a href="#top" class="nav-logo">inOli</a>
+  <ul class="nav-links">
+    <li><a href="#summary">概要</a></li>
+    <li><a href="#insight">コアインサイト</a></li>
+    <li><a href="#market">市場</a></li>
+    <li><a href="#concept">プロダクト</a></li>
+    <li><a href="#channel">チャネル</a></li>
+    <li><a href="#price">価格</a></li>
+    <li><a href="#cross">食×美</a></li>
+    <li><a href="#roadmap">展開</a></li>
+    <li><a href="#roi">ROI</a></li>
+  </ul>
+  <a href="#top" class="nav-top-btn">↑ TOP</a>
+</nav>
+
+<!-- Hero -->
+<section class="hero" id="top">
+  <div class="hero-sub">inOli — CHAPTER TWO / ブランド戦略提案書</div>
+  <h1 class="hero-title">祈り、<br>指先から。</h1>
+  <div class="hero-title-ja">A Creative Direction Proposal</div>
+  <p class="hero-desc">大地に祈り、収穫に感謝し、その結晶を指先に。<br>inOliが、第2章として辿り着いた答え。</p>
+  <div class="hero-scroll">
+    <div class="hero-scroll-line"></div>
+    <span>SCROLL</span>
+  </div>
+  <div class="hero-chapter-num">II</div>
+</section>
+
+<!-- 01 Executive Summary -->
+<section id="summary">
+  <div class="section-label fade-in">
+    <span class="section-num">00</span>
+    <span class="section-title-en">EXECUTIVE SUMMARY</span>
+    <div class="section-divider"></div>
+  </div>
+  <h2 class="fade-in">この企画が解くべき問い——そして、答え</h2>
+  <p class="fade-in" style="max-width:640px;">3年間で育てた「伊予柑オリーブオイル」ブランドを閉幕ではなく進化へ繋ぐには？<br>第1章の知見を凝縮し、3つの戦略で「祈りの一滴」へリフォーカスする。</p>
+
+  <div class="summary-grid fade-in">
+    <div class="summary-card">
+      <span class="card-tag">STRATEGY 01</span>
+      <h3>惜幕ではなく昇華</h3>
+      <p>「全身用」は消費が速く価値が届かない。ネイルケア専用の一滴へリフォーカスし、ポジションを再定義する。</p>
+    </div>
+    <div class="summary-card">
+      <span class="card-tag">STRATEGY 02</span>
+      <h3>チャネルの聖域化</h3>
+      <p>EC直販より高級サロン1,500店舗への専売契約でブランド格を守る。割引はブランドの品格を毀損する。</p>
+    </div>
+    <div class="summary-card">
+      <span class="card-tag">STRATEGY 03</span>
+      <h3>食×美のクロスセル</h3>
+      <p>サロンを食用オイルの「サテライト農園」と見なしLTV（顧客生涯価値）を最大化する。</p>
+    </div>
+    <div class="summary-roi">
+      <div class="roi-item">
+        <span class="roi-num">¥5,000万</span>
+        <span class="roi-label">投資コスト（初年度）</span>
+      </div>
+      <div class="roi-divider"></div>
+      <div class="roi-item">
+        <span class="roi-num">¥5.3億</span>
+        <span class="roi-label">売上見込み（初年度）</span>
+      </div>
+      <div class="roi-divider"></div>
+      <div class="roi-item">
+        <span class="roi-num">×10</span>
+        <span class="roi-label">投資回収率 ROI</span>
+      </div>
+      <div class="roi-divider"></div>
+      <div class="roi-item">
+        <span class="roi-num">1,500</span>
+        <span class="roi-label">認定パートナーサロン</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 02 Chapter 1 Diagnosis -->
+<section id="diagnosis">
+  <div class="section-label fade-in">
+    <span class="section-num">01</span>
+    <span class="section-title-en">DIAGNOSIS — 第1章の診断</span>
+    <div class="section-divider"></div>
+  </div>
+  <h2 class="fade-in">何が資産で、何がリスクだったのか</h2>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:2rem;margin-top:3rem;" class="fade-in">
+    <div>
+      <div style="font-family:var(--sans-ja);font-size:.68rem;letter-spacing:.2em;color:#2a7a4a;margin-bottom:1.5rem;">▲ 資産</div>
+      <div style="display:flex;flex-direction:column;gap:1px;">
+        <div style="background:rgba(42,122,74,.05);border-left:3px solid #2a7a4a;padding:1.5rem 1.8rem;">
+          <h3 style="color:var(--ink);">素材の確立</h3>
+          <p>「伊予柑オリーブオイル」という他社が持ちえない独自素材の製法・ブランドが完成した。</p>
+        </div>
+        <div style="background:rgba(42,122,74,.05);border-left:3px solid #2a7a4a;padding:1.5rem 1.8rem;">
+          <h3 style="color:var(--ink);">顧客の共感</h3>
+          <p>「時短×上質」コンセプトに共鳴するコアなファン層が形成された。</p>
+        </div>
+        <div style="background:rgba(42,122,74,.05);border-left:3px solid #2a7a4a;padding:1.5rem 1.8rem;">
+          <h3 style="color:var(--ink);">農家ストーリー</h3>
+          <p>80年・三代にわたる農園の記憶がブランドの背骨として機能した。</p>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div style="font-family:var(--sans-ja);font-size:.68rem;letter-spacing:.2em;color:#b84040;margin-bottom:1.5rem;">▼ 構造的リスク</div>
+      <div style="display:flex;flex-direction:column;gap:1px;">
+        <div style="background:rgba(184,64,64,.04);border-left:3px solid #b84040;padding:1.5rem 1.8rem;">
+          <h3 style="color:var(--ink);">損失回避バイアス</h3>
+          <p>割引キャンペーンを見た定価購入者が「損した」と感じる。損の痛みは得の喜びの約2倍（プロスペクト理論）。</p>
+        </div>
+        <div style="background:rgba(184,64,64,.04);border-left:3px solid #b84040;padding:1.5rem 1.8rem;">
+          <h3 style="color:var(--ink);">ポジション拡散</h3>
+          <p>「全身用」は用途が広すぎて消費者の使用シーン設計が困難になり、記憶に残りにくかった。</p>
+        </div>
+        <div style="background:rgba(184,64,64,.04);border-left:3px solid #b84040;padding:1.5rem 1.8rem;">
+          <h3 style="color:var(--ink);">販路の限界</h3>
+          <p>EC直販のみでは、ブランドの世界観を体験で伝える接点が作れなかった。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 03 Core Insight -->
+<section id="insight" class="insight-section" style="border-top:none;">
+  <div class="section-label fade-in">
+    <span class="section-num">02</span>
+    <span class="section-title-en" style="color:#666;">CORE INSIGHT</span>
+    <div class="section-divider" style="background:#2a2a28;"></div>
+  </div>
+  <h2 class="fade-in">「inOli＝祈り」——ブランド名が第2章の答えを持っていた</h2>
+
+  <div class="insight-flow fade-in">
+    <div class="insight-node">
+      <div class="node-circle">inOli</div>
+      <div class="node-label">ブランド名に宿る音</div>
+    </div>
+    <div class="insight-arrow">→</div>
+    <div class="insight-node">
+      <div class="node-circle">いのり</div>
+      <div class="node-label">祈りという行為</div>
+    </div>
+    <div class="insight-arrow">→</div>
+    <div class="insight-node">
+      <div class="node-circle">手を<br>合わせる</div>
+      <div class="node-label">祈りの身体動作</div>
+    </div>
+    <div class="insight-arrow">→</div>
+    <div class="insight-node">
+      <div class="node-circle">指先が<br>見える</div>
+      <div class="node-label">視線が落ちる場所</div>
+    </div>
+    <div class="insight-arrow">→</div>
+    <div class="insight-node">
+      <div class="node-circle" style="border-color:rgba(184,151,90,.8);color:var(--gold-light);">爪・<br>ネイル</div>
+      <div class="node-label" style="color:var(--gold);">ブランドの第2章</div>
+    </div>
+  </div>
+
+  <div class="insight-center fade-in">
+    <div class="insight-center-title">三者の祈り</div>
+    <p class="insight-quote">農家が自然に祈るように、消費者も日々の祈りの瞬間に最良の素材を指先へ。<br>ネイリストもまた、削り・塗り・固める全工程でお客様の幸せを願う「手の職人」である。<br>この三者の「祈り」が交差する場所こそ、inOli 第2章の聖域となる。</p>
+  </div>
+</section>
+
+<!-- 04 Market -->
+<section id="market">
+  <div class="section-label fade-in">
+    <span class="section-num">03</span>
+    <span class="section-title-en">MARKET OPPORTUNITY</span>
+    <div class="section-divider"></div>
+  </div>
+  <h2 class="fade-in">3万店舗のネイルサロン——ストーリーを持つ商品が存在しない市場</h2>
+
+  <div class="market-stats fade-in">
+    <div class="stat-box">
+      <span class="stat-num">3<span style="font-size:1.5rem;">万</span></span>
+      <span class="stat-label">全国ネイルサロン数</span>
+    </div>
+    <div class="stat-box">
+      <span class="stat-num">1,531<span class="stat-unit">億円</span></span>
+      <span class="stat-label">2023年市場規模</span>
+    </div>
+    <div class="stat-box">
+      <span class="stat-num">+6.0<span style="font-size:1.5rem;">%</span></span>
+      <span class="stat-label">前年比成長率（男女とも利用増）</span>
+    </div>
+  </div>
+
+  <div class="market-white fade-in">
+    <div class="white-item">
+      <span class="white-num">WHITE SPACE 01</span>
+      <h3>低価格競争の疲弊</h3>
+      <p>施設数の急増で1店舗あたりの売上が減少。「高単価の物語商品」を置けるサロンが差別化できるタイミング。</p>
+    </div>
+    <div class="white-item">
+      <span class="white-num">WHITE SPACE 02</span>
+      <h3>農家・自然由来のポジション空白</h3>
+      <p>ネイルケア市場において、農家の文脈・トレーサビリティを持つブランドはほぼゼロ。完全なブルーオーシャン。</p>
+    </div>
+    <div class="white-item">
+      <span class="white-num">WHITE SPACE 03</span>
+      <h3>ネイリストの「語り」の武器不足</h3>
+      <p>技術では差別化しにくい小規模サロンが、「接客時に語れるストーリー」を持つ商品を渇望している。</p>
+    </div>
+  </div>
+</section>
+
+<!-- 05 Concept -->
+<section id="concept">
+  <div class="section-label fade-in">
+    <span class="section-num">04</span>
+    <span class="section-title-en">CONCEPT DESIGN</span>
+    <div class="section-divider"></div>
+  </div>
+  <h2 class="fade-in">「一滴の祈り」——三者の祈りをつなぐプロダクト</h2>
+
+  <div class="concept-layout fade-in">
+    <div class="product-spec">
+      <div style="font-family:var(--serif-en);font-size:1.5rem;font-weight:300;color:var(--ink);margin-bottom:.3rem;">inOli ネイルセラム</div>
+      <div style="font-family:var(--sans-ja);font-size:.68rem;letter-spacing:.15em;color:var(--gold);margin-bottom:2rem;">「一滴の祈り」</div>
+      <div class="spec-row">
+        <span class="spec-key">コンセプト</span>
+        <span class="spec-val">爪母（ネイルマトリクス）へ浸透させる伊予柑オリーブオイル高濃縮美容液</span>
+      </div>
+      <div class="spec-row">
+        <span class="spec-key">容量</span>
+        <span class="spec-val">一般用 7ml ／ サロン店販用 10ml<br>業務用 30〜50ml（非売品）</span>
+      </div>
+      <div class="spec-row">
+        <span class="spec-key">形状</span>
+        <span class="spec-val">スポイト式 小瓶（お守りサイズ）</span>
+      </div>
+      <div class="spec-row">
+        <span class="spec-key">原料</span>
+        <span class="spec-val">伊予柑オリーブオイル（非加熱抽出）<br>皮脂近似のオレイン酸が細胞間脂質へ浸透</span>
+      </div>
+      <div class="spec-row">
+        <span class="spec-key">香り</span>
+        <span class="spec-val">伊予柑テルペン成分による<br>自律神経整調・血行促進効果</span>
+      </div>
+    </div>
+
+    <div class="prayer-trio">
+      <div class="prayer-item">
+        <span class="prayer-icon">FARMER'S PRAYER</span>
+        <h3>農家の祈り</h3>
+        <p>80年以上自然と向き合い、祈るように育てた農園の結晶。オレイン酸が爪母（新しい爪を生む工場）を土台から再生する。</p>
+      </div>
+      <div class="prayer-item">
+        <span class="prayer-icon">NAILIST'S PRAYER</span>
+        <h3>ネイリストの祈り</h3>
+        <p>施術の仕上げに1滴。伊予柑の香りで体験をアンカリングし、サロンのリピート率を高める「五感の設計」。</p>
+      </div>
+      <div class="prayer-item">
+        <span class="prayer-icon">USER'S PRAYER</span>
+        <h3>使い手の祈り</h3>
+        <p>手を合わせる瞬間、自分の指先に宿る一滴。忙しい日常の中に「聖域の30秒」を作る儀式。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 06 Channel -->
+<section id="channel">
+  <div class="section-label fade-in">
+    <span class="section-num">05</span>
+    <span class="section-title-en">CHANNEL STRATEGY</span>
+    <div class="section-divider"></div>
+  </div>
+  <h2 class="fade-in">ネイルサロンを「聖域」に——BtoB2Cの専売モデル</h2>
+
+  <div class="channel-grid fade-in">
+    <div>
+      <div style="font-family:var(--sans-ja);font-size:.68rem;letter-spacing:.2em;color:var(--ink-muted);margin-bottom:1.5rem;">チャネル構造</div>
+      <div class="channel-list">
+        <div class="channel-item">
+          <span class="channel-rank">TIER 01 — BtoB</span>
+          <h3>高級サロン専売</h3>
+          <p>全3万店舗のうち上位5%＝約1,500店舗のプライベート・高単価サロンのみと専売契約。「inOli 認定パートナー」として格付け管理する。</p>
+        </div>
+        <div class="channel-item">
+          <span class="channel-rank">TIER 02 — BtoB2C</span>
+          <h3>サロン店販</h3>
+          <p>ネイリストがお客様に直接販売。定価4,000円・仕入2,000円（50%利益）。メーカー直販も同定価で統一。</p>
+        </div>
+        <div class="channel-item">
+          <span class="channel-rank">TIER 03 — D2C</span>
+          <h3>セルフケア層向けEC</h3>
+          <p>第1章の既存顧客には「進化の手紙」を送付し、新コンセプトへ接続。ECは割引を一切行わず定価＝品格を維持する。</p>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div style="font-family:var(--sans-ja);font-size:.68rem;letter-spacing:.2em;color:var(--ink-muted);margin-bottom:1.5rem;">割引をしない3つの理由</div>
+      <div class="no-discount">
+        <div class="nd-item">
+          <span class="nd-num">①</span>
+          <div>
+            <h3 style="margin-bottom:.5rem;">損失回避バイアス対策</h3>
+            <p>定価購入者が「損した」と感じる体験は不信に直結する。損の痛みは得の喜びの約2倍（プロスペクト理論）。</p>
+          </div>
+        </div>
+        <div class="nd-item">
+          <span class="nd-num">②</span>
+          <div>
+            <h3 style="margin-bottom:.5rem;">価格待ちの常態化</h3>
+            <p>割引を一度見た消費者は「次のセールを待つ」行動に移行し、通常時の購買比率が慢性的に下落する。</p>
+          </div>
+        </div>
+        <div class="nd-item">
+          <span class="nd-num">③</span>
+          <div>
+            <h3 style="margin-bottom:.5rem;">ブランドの聖域化</h3>
+            <p>値引きしないことで「祈りの道具」としての稀少性が担保される。第1章顧客へは「別物への進化」として定価の納得感を伝える。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 07 Price -->
+<section id="price" class="price-section">
+  <div class="section-label fade-in">
+    <span class="section-num">06</span>
+    <span class="section-title-en">PRICE DESIGN</span>
+    <div class="section-divider"></div>
+  </div>
+  <h2 class="fade-in">「1：2」の価格法則——ネイリストが「即決」する設計</h2>
+
+  <table class="price-table fade-in">
+    <thead>
+      <tr>
+        <th>SKU</th>
+        <th>定価</th>
+        <th>卸値</th>
+        <th>備考</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>業務用オイル（30ml〜）</td>
+        <td>非売品</td>
+        <td>非売品</td>
+        <td>原価 ¥20 / 人（業務用1本→約100人分）</td>
+      </tr>
+      <tr class="price-highlight">
+        <td><strong>サロン店販用（10ml）</strong></td>
+        <td><strong>¥4,000</strong></td>
+        <td><strong>¥2,000</strong></td>
+        <td>サロン利益率 50%</td>
+      </tr>
+      <tr>
+        <td>EC・一般用（7ml）</td>
+        <td>¥4,000</td>
+        <td>—</td>
+        <td>定価統一・割引なし</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div style="background:var(--bg-warm);padding:2rem 3rem;margin:1rem 0;font-size:.88rem;color:var(--ink-soft);" class="fade-in">
+    <strong style="font-family:var(--sans-ja);font-size:.68rem;letter-spacing:.15em;color:var(--ink-muted);display:block;margin-bottom:.8rem;">施術オプション収益性</strong>
+    施術1回2滴使用 → 原価 ¥20/人 ／ 施術オプション価格「inOli 祈りの一滴仕上げ」+¥500/人 ／ 100人で <strong style="color:var(--gold);">¥50,000 の売上</strong>
+  </div>
+
+  <div class="starter-box fade-in">
+    <div>
+      <span class="starter-num">¥20,000</span>
+      <span style="font-family:var(--sans-ja);font-size:.68rem;letter-spacing:.15em;color:#666;display:block;margin-top:.4rem;">スターターキット</span>
+    </div>
+    <div style="flex:1;">
+      <div style="font-family:var(--sans-ja);font-size:.68rem;letter-spacing:.15em;color:var(--gold);margin-bottom:1rem;">CONTENTS</div>
+      <p style="color:#888;font-size:.88rem;line-height:1.8;">店販10本 + 業務用1本 + テスター + POP + コンセプトブック×10冊</p>
+    </div>
+    <div style="text-align:center;">
+      <span style="font-family:var(--serif-en);font-size:3rem;font-weight:300;color:var(--gold-light);display:block;line-height:1;">96<span style="font-size:1.5rem;">%</span></span>
+      <span style="font-family:var(--sans-ja);font-size:.65rem;color:#666;letter-spacing:.15em;">利益率</span>
+    </div>
+  </div>
+</section>
+
+<!-- 08 Food × Beauty -->
+<section id="cross">
+  <div class="section-label fade-in">
+    <span class="section-num">07</span>
+    <span class="section-title-en">FOOD × BEAUTY</span>
+    <div class="section-divider"></div>
+  </div>
+  <h2 class="fade-in">「内から、外から」——井上誠耕園の世界観を生活全体に宿す</h2>
+
+  <div class="food-beauty fade-in">
+    <div class="fb-panel dark">
+      <span class="fb-icon">🌿</span>
+      <span class="fb-label">INNER</span>
+      <h3>内側から</h3>
+      <h3 style="font-size:.9rem;color:#888;font-weight:200;margin-bottom:1rem;">食用オリーブオイル（食）</h3>
+      <p>施術前、旬の伊予柑や食材に最高級オイルを垂らした一皿を提供。味覚で信頼を先払いする。</p>
+    </div>
+    <div class="fb-panel">
+      <span class="fb-icon">💧</span>
+      <span class="fb-label">OUTER</span>
+      <h3>外側から</h3>
+      <h3 style="font-size:.9rem;color:var(--ink-muted);font-weight:300;margin-bottom:1rem;">inOli ネイルセラム（美容）</h3>
+      <p>施術の仕上げ、伊予柑の香りで体験をアンカリング。お客様は「農園の祈り」を身体で記憶する。</p>
+    </div>
+  </div>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:2rem;margin-top:2rem;" class="fade-in">
+    <div style="padding:2rem;background:var(--bg-warm);">
+      <div style="font-family:var(--sans-ja);font-size:.65rem;letter-spacing:.15em;color:var(--gold);margin-bottom:.8rem;">RETENTION</div>
+      <h3>店販→自宅ケア</h3>
+      <p>「夜寝る前の1滴」が1ヶ月後の指先を変えると伝える。爪の生長サイクル（約30日）で自然なリピートが生まれる。</p>
+    </div>
+    <div style="padding:2rem;background:var(--bg-warm);">
+      <div style="font-family:var(--sans-ja);font-size:.65rem;letter-spacing:.15em;color:var(--gold);margin-bottom:.8rem;">ANTENNA SHOP</div>
+      <h3>サロンをアンテナショップ化</h3>
+      <p>棚に数本だけ美しく陳列＋QRコードで農園直送。サロンは在庫リスクなし、紹介料を得る。</p>
+    </div>
+  </div>
+
+  <div class="cycle-quote fade-in">
+    「あなたの指先を作るのは、今日あなたが口にした一滴と、今日あなたが指先に落とした一滴です。」
+  </div>
+</section>
+
+<!-- 09 Roadmap -->
+<section id="roadmap">
+  <div class="section-label fade-in">
+    <span class="section-num">08</span>
+    <span class="section-title-en">ROLLOUT PLAN</span>
+    <div class="section-divider"></div>
+  </div>
+  <h2 class="fade-in">90日で動かし、1年で黒字化する——4フェーズ実行計画</h2>
+
+  <div class="roadmap fade-in">
+    <div class="phase">
+      <span class="phase-num">PHASE 1</span>
+      <span class="phase-period">1〜2ヶ月</span>
+      <h3>ネイリスト座談会・共創</h3>
+      <p style="font-size:.82rem;">都内外プライベートサロン3〜5名を招集。テクスチャー・香り・トークの温度感を確認。「inOli 認定アンバサダー」を囲い込む。</p>
+    </div>
+    <div class="phase">
+      <span class="phase-num">PHASE 2</span>
+      <span class="phase-period">3〜6ヶ月</span>
+      <h3>OEM開発・容器試作</h3>
+      <p style="font-size:.82rem;">農園原料持ち込み型OEMにより処方をネイル浸透特化へ調整。宝石のような小瓶デザインの試作。「五感の施術マニュアル」を作成。</p>
+    </div>
+    <div class="phase">
+      <span class="phase-num">PHASE 3</span>
+      <span class="phase-period">7〜9ヶ月</span>
+      <h3>限定先行販売・PR</h3>
+      <p style="font-size:.82rem;">高単価サロン100店舗から先行導入。SNSでネイリストが語る動画を設計。ビューティーワールドJapan出展。</p>
+    </div>
+    <div class="phase">
+      <span class="phase-num">PHASE 4</span>
+      <span class="phase-period">10ヶ月〜</span>
+      <h3>1,500店舗 本格展開</h3>
+      <p style="font-size:.82rem;">認定パートナーサロンへの本格卸。食用オイルのクロスセルを同時起動。シリアルナンバー管理で転売を防止。</p>
+    </div>
+  </div>
+
+  <div style="background:var(--bg-warm);padding:2.5rem 3rem;margin-top:2rem;border-left:3px solid var(--gold);" class="fade-in">
+    <div style="font-family:var(--sans-ja);font-size:.65rem;letter-spacing:.15em;color:var(--gold);margin-bottom:.8rem;">CDとして最初の90日</div>
+    <p>「第2章 宣言書」の制作 ／ シグネチャー小瓶デザイン ／ ネイリスト向け五感の施術マニュアル作成</p>
+  </div>
+</section>
+
+<!-- 10 ROI -->
+<section id="roi" class="roi-section">
+  <div class="section-label fade-in">
+    <span class="section-num">09</span>
+    <span class="section-title-en" style="color:#555;">COST & ROI</span>
+    <div class="section-divider" style="background:#2a2a28;"></div>
+  </div>
+  <h2 class="fade-in">初年度コスト試算——投資5,000万円に対するROIの構造</h2>
+
+  <div class="roi-grid fade-in">
+    <div>
+      <div style="font-family:var(--sans-ja);font-size:.68rem;letter-spacing:.2em;color:#555;margin-bottom:1.5rem;">A. 開発・営業コスト（初年度）</div>
+      <div class="cost-list">
+        <div class="cost-item">
+          <div>
+            <span class="cost-name">開発・製造（OEM）</span>
+            <span class="cost-sub">処方リニューアル・容器設計・初期ロット3,000〜5,000本</span>
+          </div>
+          <span class="cost-amount">約2,000万円</span>
+        </div>
+        <div class="cost-item">
+          <div>
+            <span class="cost-name">クリエイティブ・販促</span>
+            <span class="cost-sub">映像制作・コンセプトブック・POP・SNS広告</span>
+          </div>
+          <span class="cost-amount">約1,500万円</span>
+        </div>
+        <div class="cost-item">
+          <div>
+            <span class="cost-name">営業・人件費</span>
+            <span class="cost-sub">専任営業・展示会・座談会・認定パートナー制度運用</span>
+          </div>
+          <span class="cost-amount">約1,500万円</span>
+        </div>
+        <div class="cost-item" style="border-bottom:none;padding-top:1.5rem;">
+          <span class="cost-name" style="color:#f0ede8;font-size:.95rem;">合計</span>
+          <span class="cost-amount" style="font-size:1.5rem;">約5,000万円</span>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div style="font-family:var(--sans-ja);font-size:.68rem;letter-spacing:.2em;color:#555;margin-bottom:1.5rem;">B. 収益見込み（初年度）</div>
+      <div class="revenue-list">
+        <div class="rev-item">
+          <div>
+            <span class="rev-num">¥3,000万</span>
+            <span class="rev-label">スターターキット売上<br>1,500店 × ¥20,000</span>
+          </div>
+        </div>
+        <div class="rev-item">
+          <div>
+            <span class="rev-num">¥1.8億</span>
+            <span class="rev-label">サロン店販リピート<br>5本/月 × 1,500店 × 12ヶ月 × ¥2,000</span>
+          </div>
+        </div>
+        <div class="rev-item">
+          <div>
+            <span class="rev-num">¥3.2億</span>
+            <span class="rev-label">食×美 クロスセル<br>購入者10%が食用定期購入に移行</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="roi-total">
+      <div class="roi-total-item">
+        <span class="roi-total-num">¥5.3億</span>
+        <span class="roi-total-label">売上見込み計（初年度）</span>
+      </div>
+      <div style="width:1px;height:60px;background:#333;"></div>
+      <div class="roi-total-item">
+        <span class="roi-total-num">¥5,000万</span>
+        <span class="roi-total-label">初年度投資コスト</span>
+      </div>
+      <div style="width:1px;height:60px;background:#333;"></div>
+      <div class="roi-total-item">
+        <span class="roi-total-num" style="font-size:4rem;">×10</span>
+        <span class="roi-total-label">投資回収率（ROI）</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Closing -->
+<section class="closing" id="closing">
+  <div class="closing-label fade-in">inOli — CHAPTER TWO / CREATIVE DIRECTION PROPOSAL</div>
+  <div class="closing-title fade-in">
+    第2章は、<br><em>祈り</em>から始まる。
+  </div>
+  <ul class="closing-bullets fade-in">
+    <li>ブランド名「inOli」が、第2章のコンセプトを最初から宿していた</li>
+    <li>3万店舗のネイルサロンが、物語を持つプロダクトを待っている</li>
+    <li>投資¥5,000万 → 初年度売上見込み¥5.3億。食とのシナジーもここから生まれる</li>
+  </ul>
+  <div class="closing-footer">井上オリーブ柑橘研究所 ／ inOli Chapter 2 Creative Direction Proposal</div>
+</section>
+
+<!-- Scroll to Top -->
+<a href="#top" class="scroll-top" id="scrollTop">↑</a>
+
+<script>
+  // Progress bar
+  const progressBar = document.getElementById('progressBar');
+  const scrollTop = document.getElementById('scrollTop');
+  const nav = document.getElementById('mainNav');
+
+  window.addEventListener('scroll', () => {
+    const scrolled = window.scrollY;
+    const total = document.documentElement.scrollHeight - window.innerHeight;
+    const progress = (scrolled / total) * 100;
+    progressBar.style.width = progress + '%';
+
+    // Scroll to top button
+    if (scrolled > 600) {
+      scrollTop.classList.add('visible');
+    } else {
+      scrollTop.classList.remove('visible');
+    }
+
+    // Nav dark mode (hero section)
+    const heroHeight = document.querySelector('.hero').offsetHeight;
+    const insightTop = document.getElementById('insight').offsetTop;
+    const roiTop = document.getElementById('roi').offsetTop;
+    const closingTop = document.getElementById('closing').offsetTop;
+
+    if (scrolled < heroHeight - 80 ||
+        (scrolled >= insightTop - 80 && scrolled < insightTop + document.getElementById('insight').offsetHeight - 80) ||
+        (scrolled >= roiTop - 80 && scrolled < roiTop + document.getElementById('roi').offsetHeight - 80) ||
+        scrolled >= closingTop - 80) {
+      nav.classList.add('dark');
+    } else {
+      nav.classList.remove('dark');
+    }
+  });
+
+  // Fade-in on scroll
+  const fadeEls = document.querySelectorAll('.fade-in');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => {
+          entry.target.classList.add('visible');
+        }, 80);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  fadeEls.forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
