@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>井上誠耕園 社員福利厚生再設計構想 — 宮崎響</title>
+<title>井上誠耕園 社員が、商品の一番の理解者になる日。 — 宮崎響</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;600;700;800&family=Noto+Sans+JP:wght@300;400;500;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap" rel="stylesheet">
@@ -26,23 +26,15 @@
     --font-sans:  'Noto Sans JP', sans-serif;
     --font-en:    'Cormorant Garamond', serif;
   }
-
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
   body { background: #1a1a1a; font-family: var(--font-sans); color: var(--gray-dark); }
 
-  /* ── A4横ページ ── */
   .page {
-    width: 297mm;
-    height: 210mm;
-    margin: 6mm auto;
-    background: var(--cream);
-    position: relative;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
+    width: 297mm; height: 210mm;
+    margin: 6mm auto; background: var(--cream);
+    position: relative; overflow: hidden;
+    display: flex; flex-direction: column;
   }
-
   @media print {
     body { background: white; }
     .page { margin: 0; page-break-after: always; page-break-inside: avoid; }
@@ -50,181 +42,159 @@
     @page { size: A4 landscape; margin: 0; }
   }
 
-  /* ── ヘッダー・フッター ── */
-  .ph {
-    height: 9mm; background: var(--olive-dark);
-    display: flex; align-items: center;
-    justify-content: space-between; padding: 0 9mm; flex-shrink: 0;
-  }
+  /* ヘッダー・フッター */
+  .ph { height: 9mm; background: var(--olive-dark); display: flex; align-items: center; justify-content: space-between; padding: 0 10mm; flex-shrink: 0; }
   .ph-title { font-family: var(--font-sans); font-size: 7pt; font-weight: 300; color: rgba(255,255,255,.45); letter-spacing:.12em; }
-  .ph-num   { font-family: var(--font-en);   font-size: 8pt; color: rgba(255,255,255,.3); letter-spacing:.1em; }
+  .ph-num   { font-family: var(--font-en);   font-size: 8.5pt; color: rgba(255,255,255,.3); letter-spacing:.1em; }
+  .pf { height: 7mm; background: var(--olive-pale); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .pf-text { font-family: var(--font-en); font-size: 7pt; color: var(--olive-mid); font-style: italic; letter-spacing:.08em; }
 
-  .pf {
-    height: 7mm; background: var(--olive-pale);
-    display: flex; align-items: center; justify-content: center; flex-shrink: 0;
-  }
-  .pf-text { font-family: var(--font-en); font-size: 6.5pt; color: var(--olive-mid); font-style: italic; letter-spacing:.08em; }
+  /* 本文エリア */
+  .pb { flex: 1; padding: 7mm 11mm 5mm; display: flex; flex-direction: column; overflow: hidden; }
 
-  /* ── 本文エリア ── */
-  .pb { flex: 1; padding: 7mm 9mm 5mm; display: flex; flex-direction: column; overflow: hidden; }
+  /* セクションタイトル */
+  .eyebrow   { font-family: var(--font-en); font-size: 7.5pt; color: var(--olive-light); letter-spacing:.2em; text-transform:uppercase; margin-bottom:2mm; }
+  .sec-title { font-family: var(--font-serif); font-size: 19pt; font-weight:700; color: var(--olive-dark); line-height:1.25; margin-bottom:4mm; letter-spacing:.03em; }
+  .sec-rule  { width:100%; height:.5px; background: linear-gradient(to right, var(--olive-light), transparent); margin-bottom:5mm; }
 
-  /* ── セクションタイトル ── */
-  .eyebrow { font-family: var(--font-en); font-size: 7pt; color: var(--olive-light); letter-spacing:.2em; text-transform:uppercase; margin-bottom:1.5mm; }
-  .sec-title { font-family: var(--font-serif); font-size: 18pt; font-weight:700; color: var(--olive-dark); line-height:1.25; margin-bottom:3.5mm; letter-spacing:.03em; }
-  .sec-rule { width:100%; height:.5px; background: linear-gradient(to right, var(--olive-light), transparent); margin-bottom:4mm; }
+  /* テキスト — 一回り大きく */
+  .bt  { font-family: var(--font-sans); font-size: 9pt;   font-weight:400; color: var(--gray-dark); line-height:1.9; }
+  .bs  { font-family: var(--font-sans); font-size: 8pt;   font-weight:300; color: var(--gray-mid);  line-height:1.85; }
+  .bb  { font-family: var(--font-sans); font-size: 9pt;   font-weight:700; color: var(--olive-dark); line-height:1.75; }
+  .sub { font-family: var(--font-sans); font-size: 8.5pt; font-weight:700; color: var(--olive-mid);
+         margin-bottom:2.5mm; margin-top:4.5mm; padding-left:3mm; border-left:2.5px solid var(--olive-light); }
 
-  /* ── テキスト ── */
-  .bt  { font-family: var(--font-sans); font-size: 8.5pt; font-weight:400; color: var(--gray-dark); line-height:1.85; }
-  .bs  { font-family: var(--font-sans); font-size: 7.5pt; font-weight:300; color: var(--gray-mid);  line-height:1.8; }
-  .bb  { font-family: var(--font-sans); font-size: 8.5pt; font-weight:700; color: var(--olive-dark); line-height:1.7; }
-  .sub { font-family: var(--font-sans); font-size: 8pt;   font-weight:700; color: var(--olive-mid);  line-height:1.5;
-         margin-bottom:2mm; margin-top:4mm; padding-left:3mm; border-left:2.5px solid var(--olive-light); }
+  /* クォート */
+  .qb { background: var(--olive-cream); border-left:3px solid var(--olive-light); padding:4.5mm 6mm; margin:3.5mm 0; }
+  .qt { font-family: var(--font-serif); font-size: 11pt; font-weight:600; color: var(--olive-dark); line-height:1.8; letter-spacing:.03em; }
 
-  /* ── クォート ── */
-  .qb { background: var(--olive-cream); border-left:3px solid var(--olive-light); padding:4mm 6mm; margin:3mm 0; }
-  .qt { font-family: var(--font-serif); font-size: 10.5pt; font-weight:600; color: var(--olive-dark); line-height:1.75; letter-spacing:.03em; }
+  /* ハイライトボックス */
+  .hb  { background:#FFF8E8; border-left:3px solid var(--gold); padding:4mm 6mm; margin:3mm 0; }
+  .hbt { font-family: var(--font-serif); font-size: 10.5pt; font-weight:600; color:#7A5C00; line-height:1.8; }
+  .hbs { font-family: var(--font-sans);  font-size: 7.5pt;  color:#A07800; margin-top:1.5mm; line-height:1.75; }
 
-  /* ── 数字カード ── */
+  /* アクセントボックス */
+  .ab  { background: var(--olive-dark); padding:4.5mm 7mm; margin:3mm 0; }
+  .abt { font-family: var(--font-serif); font-size: 10pt; font-weight:600; color:white; line-height:1.8; letter-spacing:.03em; }
+  .abs { font-family: var(--font-sans);  font-size: 7pt; color:rgba(200,220,160,.7); margin-top:2mm; line-height:1.7; }
+
+  /* 数字カード */
   .ncards { display:grid; gap:3mm; margin:3mm 0; }
   .nc3 { grid-template-columns: repeat(3,1fr); }
   .nc4 { grid-template-columns: repeat(4,1fr); }
-  .ncard { background: var(--olive-pale); padding:4mm; text-align:center; border-top:2.5px solid var(--olive-light); }
-  .nv { font-family: var(--font-serif); font-size:22pt; font-weight:700; color: var(--olive-mid); line-height:1; margin-bottom:1.5mm; }
-  .nl { font-family: var(--font-sans);  font-size:7.5pt; font-weight:700; color: var(--olive-dark); margin-bottom:1.5mm; }
-  .nd { font-family: var(--font-sans);  font-size:6.5pt; color: var(--gray-mid); line-height:1.6; }
+  .ncard { background: var(--olive-pale); padding:4.5mm; text-align:center; border-top:2.5px solid var(--olive-light); }
+  .nv { font-family: var(--font-serif); font-size:23pt; font-weight:700; color: var(--olive-mid); line-height:1; margin-bottom:2mm; }
+  .nl { font-family: var(--font-sans);  font-size:8pt; font-weight:700; color: var(--olive-dark); margin-bottom:1.5mm; }
+  .nd { font-family: var(--font-sans);  font-size:7pt; color: var(--gray-mid); line-height:1.65; }
 
-  /* ── フェーズバー ── */
-  .pbar { display:grid; grid-template-columns:repeat(4,1fr); gap:2mm; margin:3mm 0; }
-  .pi { display:flex; flex-direction:column; }
-  .ph0 { background: var(--olive-darkest); }
-  .ph1 { background: var(--olive-dark); }
-  .ph2 { background: var(--olive-mid); }
-  .ph3 { background: var(--olive-light); }
-  .phd { padding:3mm; text-align:center; }
-  .pl  { font-family: var(--font-en);   font-size:7pt;   font-weight:600; color:rgba(255,255,255,.55); letter-spacing:.1em; display:block; }
-  .pn  { font-family: var(--font-sans); font-size:8pt;   font-weight:700; color:white; display:block; margin-top:1mm; }
-  .pbc { background:white; border:.5px solid var(--olive-pale); padding:3mm; flex:1; }
-  .pp  { font-family: var(--font-en);   font-size:6.5pt; color: var(--olive-light); font-style:italic; display:block; margin-bottom:1.5mm; }
-  .pd  { font-family: var(--font-sans); font-size:7pt;   color: var(--gray-dark); line-height:1.65; }
-  .po  { font-family: var(--font-sans); font-size:6.5pt; font-weight:700; color: var(--olive-mid); margin-top:2mm; padding-top:2mm; border-top:.5px solid var(--olive-pale); }
+  /* フェーズバー */
+  .pbar { display:grid; grid-template-columns:repeat(4,1fr); gap:2.5mm; margin:3mm 0; }
+  .pi   { display:flex; flex-direction:column; }
+  .ph0  { background: var(--olive-darkest); }
+  .ph1  { background: var(--olive-dark); }
+  .ph2  { background: var(--olive-mid); }
+  .ph3  { background: var(--olive-light); }
+  .phd  { padding:3mm; text-align:center; }
+  .pl   { font-family: var(--font-en);   font-size:7.5pt; font-weight:600; color:rgba(255,255,255,.55); letter-spacing:.1em; display:block; }
+  .pn   { font-family: var(--font-sans); font-size:8.5pt; font-weight:700; color:white; display:block; margin-top:1mm; }
+  .pbc  { background:white; border:.5px solid var(--olive-pale); padding:3.5mm; flex:1; }
+  .pp   { font-family: var(--font-en);   font-size:7pt; color: var(--olive-light); font-style:italic; display:block; margin-bottom:2mm; }
+  .pd   { font-family: var(--font-sans); font-size:7.5pt; color: var(--gray-dark); line-height:1.7; }
+  .po   { font-family: var(--font-sans); font-size:7pt; font-weight:700; color: var(--olive-mid); margin-top:2.5mm; padding-top:2.5mm; border-top:.5px solid var(--olive-pale); }
 
-  /* ── テーブル ── */
-  .dt { width:100%; border-collapse:collapse; font-family: var(--font-sans); font-size:7.5pt; }
-  .dt th { background: var(--olive-dark); color:white; padding:3mm; font-weight:700; text-align:left; letter-spacing:.05em; }
-  .dt td { padding:3mm; border-bottom:.5px solid var(--olive-pale); color: var(--gray-dark); line-height:1.65; vertical-align:top; }
+  /* テーブル */
+  .dt { width:100%; border-collapse:collapse; font-family: var(--font-sans); font-size:8pt; }
+  .dt th { background: var(--olive-dark); color:white; padding:3mm 3.5mm; font-weight:700; text-align:left; letter-spacing:.05em; }
+  .dt td { padding:3mm 3.5mm; border-bottom:.5px solid var(--olive-pale); color: var(--gray-dark); line-height:1.7; vertical-align:top; }
   .dt tr:nth-child(even) td { background: var(--olive-cream); }
   .dt tr:nth-child(odd)  td { background: white; }
 
-  /* ── リターンカード ── */
-  .rcards { display:grid; grid-template-columns:repeat(4,1fr); gap:3mm; }
-  .rc { background:white; border-top:3px solid var(--olive-light); padding:4mm; }
-  .rct { font-family: var(--font-sans); font-size:8pt; font-weight:700; color: var(--olive-dark); margin-bottom:2mm; }
-  .rcb { font-family: var(--font-sans); font-size:6.5pt; color: var(--gray-mid); line-height:1.7; }
-
-  /* ── フロー ── */
-  .flow { display:flex; align-items:center; margin:3mm 0; }
-  .fi   { flex:1; background: var(--olive-pale); padding:3mm 4mm; text-align:center; }
-  .fi.hl{ background: var(--olive-mid); }
-  .fit  { font-family: var(--font-sans); font-size:7pt; font-weight:700; color: var(--olive-dark); line-height:1.5; }
-  .fi.hl .fit { color:white; }
-  .fa   { width:7mm; flex-shrink:0; text-align:center; font-size:11pt; color: var(--olive-light); }
-
-  /* ── グリッド ── */
-  .g2  { display:grid; grid-template-columns:1fr 1fr;   gap:6mm; }
-  .g3  { display:grid; grid-template-columns:1fr 1fr 1fr; gap:4mm; }
-  .g64 { display:grid; grid-template-columns:6fr 4fr;   gap:6mm; }
-  .g55 { display:grid; grid-template-columns:5fr 5fr;   gap:6mm; }
-
-  /* ── アクセントボックス ── */
-  .ab  { background: var(--olive-dark); padding:4mm 6mm; margin:3mm 0; }
-  .abt { font-family: var(--font-serif); font-size:9.5pt; font-weight:600; color:white; line-height:1.75; letter-spacing:.03em; }
-  .abs { font-family: var(--font-sans);  font-size:6.5pt; color:rgba(200,220,160,.7); margin-top:2mm; }
-
-  /* ── ハイライトボックス（温かみ） ── */
-  .hb  { background:#FFF8E8; border-left:3px solid var(--gold); padding:4mm 6mm; margin:3mm 0; }
-  .hbt { font-family: var(--font-serif); font-size:10pt; font-weight:600; color:#7A5C00; line-height:1.75; }
-  .hbs { font-family: var(--font-sans);  font-size:7pt;  color:#A07800; margin-top:1.5mm; line-height:1.7; }
-
-  /* ── 比較テーブル（コスト） ── */
-  .cost-grid { display:grid; grid-template-columns:1fr 1fr 1fr; gap:3mm; margin:3mm 0; }
-  .cost-card { padding:4mm; text-align:center; }
+  /* コストカード */
+  .cost-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:3.5mm; margin:3mm 0; }
+  .cost-card { padding:4.5mm; text-align:center; }
   .cost-card.bad  { background:#FFF0F0; border-top:2.5px solid #CC4444; }
-  .cost-card.good { background:#F0F7E8; border-top:2.5px solid var(--olive-light); }
-  .cost-card.best { background: var(--olive-dark); border-top:2.5px solid var(--gold-light); }
-  .ccv { font-family: var(--font-serif); font-size:20pt; font-weight:700; line-height:1; margin-bottom:1.5mm; }
+  .cost-card.good { background: var(--olive-dark); border-top:2.5px solid var(--gold-light); }
+  .ccv { font-family: var(--font-serif); font-size:21pt; font-weight:700; line-height:1; margin-bottom:2mm; }
   .cost-card.bad  .ccv { color:#CC4444; }
-  .cost-card.good .ccv { color: var(--olive-mid); }
-  .cost-card.best .ccv { color: var(--gold-light); }
-  .ccl { font-family: var(--font-sans); font-size:7.5pt; font-weight:700; margin-bottom:1.5mm; }
+  .cost-card.good .ccv { color: var(--gold-light); }
+  .ccl { font-family: var(--font-sans); font-size:8pt; font-weight:700; margin-bottom:2mm; }
   .cost-card.bad  .ccl { color:#AA2222; }
-  .cost-card.good .ccl { color: var(--olive-dark); }
-  .cost-card.best .ccl { color:white; }
-  .ccd { font-family: var(--font-sans); font-size:6.5pt; line-height:1.65; }
-  .cost-card.bad  .ccd { color:#AA4444; }
-  .cost-card.good .ccd { color: var(--gray-mid); }
-  .cost-card.best .ccd { color:rgba(255,255,255,.6); }
+  .cost-card.good .ccl { color:white; }
+  .ccd { font-family: var(--font-sans); font-size:7pt; line-height:1.7; }
+  .cost-card.bad  .ccd { color:#884444; }
+  .cost-card.good .ccd { color:rgba(255,255,255,.65); }
 
-  /* ── タグ ── */
+  /* リターンカード */
+  .rcards { display:grid; gap:3mm; }
+  .rc  { background:white; border-top:3px solid var(--olive-light); padding:4mm; }
+  .rct { font-family: var(--font-sans); font-size:8.5pt; font-weight:700; color: var(--olive-dark); margin-bottom:2mm; }
+  .rcb { font-family: var(--font-sans); font-size:7.5pt; color: var(--gray-mid); line-height:1.75; }
+
+  /* フロー */
+  .flow { display:flex; align-items:center; margin:3mm 0; }
+  .fi   { flex:1; background: var(--olive-pale); padding:3.5mm 4mm; text-align:center; }
+  .fi.hl{ background: var(--olive-mid); }
+  .fit  { font-family: var(--font-sans); font-size:7.5pt; font-weight:700; color: var(--olive-dark); line-height:1.55; }
+  .fi.hl .fit { color:white; }
+  .fa   { width:8mm; flex-shrink:0; text-align:center; font-size:12pt; color: var(--olive-light); }
+
+  /* グリッド */
+  .g2  { display:grid; grid-template-columns:1fr 1fr;   gap:7mm; }
+  .g3  { display:grid; grid-template-columns:1fr 1fr 1fr; gap:4mm; }
+  .g55 { display:grid; grid-template-columns:5fr 5fr;   gap:7mm; }
+  .g64 { display:grid; grid-template-columns:6fr 4fr;   gap:7mm; }
+
+  /* フィーチャーカード */
+  .fc  { background:white; border:.5px solid var(--olive-pale); padding:4.5mm; }
+  .fci { font-size:15pt; margin-bottom:2.5mm; display:block; }
+  .fct { font-family: var(--font-sans); font-size:8.5pt; font-weight:700; color: var(--olive-dark); margin-bottom:2mm; }
+  .fcb { font-family: var(--font-sans); font-size:7.5pt; color: var(--gray-mid); line-height:1.75; }
+
+  /* タグ */
   .tag { display:inline-block; background: var(--olive-pale); color: var(--olive-dark);
-         font-family: var(--font-sans); font-size:6.5pt; font-weight:700;
-         padding:1mm 3mm; margin:.5mm; letter-spacing:.05em; }
+         font-family: var(--font-sans); font-size:7pt; font-weight:700;
+         padding:1.5mm 3mm; margin:.5mm; letter-spacing:.05em; }
 
-  /* ── フィーチャーカード ── */
-  .fc  { background:white; border:.5px solid var(--olive-pale); padding:4mm; }
-  .fci { font-size:14pt; margin-bottom:2mm; display:block; }
-  .fct { font-family: var(--font-sans); font-size:8pt; font-weight:700; color: var(--olive-dark); margin-bottom:2mm; }
-  .fcb { font-family: var(--font-sans); font-size:6.5pt; color: var(--gray-mid); line-height:1.7; }
-
-  /* ── スペーサー ── */
+  /* スペーサー */
   .s1{margin-top:1mm}.s2{margin-top:2mm}.s3{margin-top:3mm}.s4{margin-top:4mm}.s5{margin-top:5mm}
 
   /* ======== 表紙 ======== */
   .cover { background: var(--olive-dark); justify-content:center; align-items:center; }
-  .cbg   { position:absolute; inset:0;
-           background-image: repeating-linear-gradient(45deg, transparent, transparent 40px, rgba(255,255,255,.012) 40px, rgba(255,255,255,.012) 41px); }
-  .clbar { position:absolute; left:0; top:0; bottom:0; width:6px;
-           background:linear-gradient(to bottom, var(--gold), var(--olive-light), var(--gold)); }
-  .ctop  { position:absolute; top:17mm; left:18mm; right:18mm; height:.5px;
-           background:linear-gradient(to right, transparent, var(--gold-light), transparent); }
-  .cbot  { position:absolute; bottom:17mm; left:18mm; right:18mm; height:.5px;
-           background:linear-gradient(to right, transparent, var(--gold-light), transparent); }
+  .cbg   { position:absolute; inset:0; background-image: repeating-linear-gradient(45deg,transparent,transparent 40px,rgba(255,255,255,.012) 40px,rgba(255,255,255,.012) 41px); }
+  .clbar { position:absolute; left:0; top:0; bottom:0; width:6px; background:linear-gradient(to bottom, var(--gold), var(--olive-light), var(--gold)); }
+  .ctop  { position:absolute; top:17mm; left:18mm; right:18mm; height:.5px; background:linear-gradient(to right, transparent, var(--gold-light), transparent); }
+  .cbot  { position:absolute; bottom:17mm; left:18mm; right:18mm; height:.5px; background:linear-gradient(to right, transparent, var(--gold-light), transparent); }
   .cc    { position:relative; z-index:1; text-align:center; display:flex; flex-direction:column; align-items:center; }
-  .cen   { font-family: var(--font-en);   font-size:9.5pt; font-style:italic; color:rgba(255,255,255,.35); letter-spacing:.18em; margin-bottom:8mm; }
-  .ccat  { font-family: var(--font-sans); font-size:9pt;   font-weight:300;   color:rgba(200,220,160,.85); letter-spacing:.3em; margin-bottom:5mm; }
-  .ctitle{ font-family: var(--font-serif);font-size:28pt;  font-weight:700;   color:white; line-height:1.35; letter-spacing:.05em; margin-bottom:7mm; }
+  .cen   { font-family: var(--font-en);    font-size:9.5pt; font-style:italic; color:rgba(255,255,255,.35); letter-spacing:.18em; margin-bottom:8mm; }
+  .ccat  { font-family: var(--font-sans);  font-size:9pt;   font-weight:300; color:rgba(200,220,160,.85); letter-spacing:.3em; margin-bottom:5mm; }
+  .ctitle{ font-family: var(--font-serif); font-size:28pt;  font-weight:700; color:white; line-height:1.35; letter-spacing:.05em; margin-bottom:7mm; }
   .ctitle span { display:block; font-size:12pt; font-weight:400; color:rgba(200,220,160,.75); letter-spacing:.2em; margin-bottom:3mm; }
-  .cdiv  { width:36mm; height:1px; background:linear-gradient(to right, transparent, var(--gold-light), transparent); margin:0 auto 7mm; }
-  .csub  { font-family: var(--font-sans); font-size:8pt; font-weight:300; color:rgba(255,255,255,.45); letter-spacing:.15em; margin-bottom:10mm; }
+  .cdiv  { width:36mm; height:1px; background:linear-gradient(to right,transparent,var(--gold-light),transparent); margin:0 auto 7mm; }
+  .csub  { font-family: var(--font-sans); font-size:8.5pt; font-weight:300; color:rgba(255,255,255,.45); letter-spacing:.15em; margin-bottom:10mm; }
   .cmeta { display:flex; gap:10mm; align-items:center; }
-  .cml   { font-family: var(--font-en);   font-size:7pt;  color:rgba(255,255,255,.3); letter-spacing:.1em; display:block; margin-bottom:2px; }
-  .cmv   { font-family: var(--font-sans); font-size:8pt;  font-weight:400; color:rgba(255,255,255,.65); letter-spacing:.05em; }
-  .cmdot { width:3px; height:3px; border-radius:50%; background: var(--gold-light); opacity:.4; margin-top:7px; }
+  .cml   { font-family: var(--font-en);   font-size:7pt; color:rgba(255,255,255,.3); letter-spacing:.1em; display:block; margin-bottom:2px; }
+  .cmv   { font-family: var(--font-sans); font-size:8.5pt; font-weight:400; color:rgba(255,255,255,.65); letter-spacing:.05em; }
+  .cmdot { width:3px; height:3px; border-radius:50%; background:var(--gold-light); opacity:.4; margin-top:7px; }
 
   /* ======== クロージング ======== */
   .closing { background: var(--olive-darkest); justify-content:center; align-items:center; }
-  .clc  { text-align:center; position:relative; z-index:1; padding:8mm 22mm; }
-  .clen { font-family: var(--font-en);   font-size:9pt;  font-style:italic; color:rgba(255,255,255,.3); letter-spacing:.2em; margin-bottom:7mm; }
-  .clt  { font-family: var(--font-serif);font-size:12.5pt; font-weight:600;  color:white; line-height:1.8; margin-bottom:7mm; letter-spacing:.04em; }
-  .clr  { width:28mm; height:1px; background:linear-gradient(to right, transparent, var(--gold-light), transparent); margin:0 auto 7mm; }
-  .clb  { font-family: var(--font-sans); font-size:8.5pt; font-weight:300; color:rgba(255,255,255,.5); line-height:2.05; letter-spacing:.05em; }
-  .cla  { margin-top:9mm; font-family: var(--font-en); font-size:8pt; color:rgba(255,255,255,.3); letter-spacing:.15em; }
+  .clc  { text-align:center; position:relative; z-index:1; padding:8mm 24mm; }
+  .clen { font-family: var(--font-en);    font-size:9.5pt; font-style:italic; color:rgba(255,255,255,.3); letter-spacing:.2em; margin-bottom:7mm; }
+  .clt  { font-family: var(--font-serif); font-size:13pt; font-weight:600; color:white; line-height:1.85; margin-bottom:7mm; letter-spacing:.04em; }
+  .clr  { width:28mm; height:1px; background:linear-gradient(to right,transparent,var(--gold-light),transparent); margin:0 auto 7mm; }
+  .clb  { font-family: var(--font-sans); font-size:9pt; font-weight:300; color:rgba(255,255,255,.55); line-height:2.1; letter-spacing:.05em; }
+  .cla  { margin-top:9mm; font-family: var(--font-en); font-size:8.5pt; color:rgba(255,255,255,.3); letter-spacing:.15em; }
 </style>
 </head>
 <body>
 
 <!-- ========== PAGE 1: COVER ========== -->
 <div class="page cover">
-  <div class="cbg"></div>
-  <div class="clbar"></div>
-  <div class="ctop"></div>
-  <div class="cbot"></div>
+  <div class="cbg"></div><div class="clbar"></div><div class="ctop"></div><div class="cbot"></div>
   <div class="cc">
-    <div class="cen">Inoue Seikouen — Employee Welfare Redesign</div>
+    <div class="cen">Inoue Seikouen — Employee Experience — Deepening</div>
     <div class="ccat">肥料に投じるように、人に投じる。</div>
-    <div class="ctitle">
-      <span>井上誠耕園</span>
-      社員福利厚生<br>再設計構想
-    </div>
+    <div class="ctitle"><span>井上誠耕園</span>社員が、商品の<br>一番の理解者になる日。</div>
     <div class="cdiv"></div>
     <div class="csub">— 160名の体験から始まり、日本の農業インフラへと育つ —</div>
     <div class="cmeta">
@@ -239,22 +209,26 @@
 
 <!-- ========== PAGE 2: なぜ今か ========== -->
 <div class="page">
-  <div class="ph"><span class="ph-title">井上誠耕園　社員福利厚生再設計構想</span><span class="ph-num">01 / 07</span></div>
+  <div class="ph"><span class="ph-title">井上誠耕園　社員が、商品の一番の理解者になる日。</span><span class="ph-num">01 / 08</span></div>
   <div class="pb">
     <div class="eyebrow">Why Now</div>
     <div class="sec-title">なぜ、今か。</div>
     <div class="sec-rule"></div>
     <div class="g64">
       <div>
-        <p class="bt">通販市場の飽和と、顧客獲得コストの上昇。これは代表自身が言語化されている、井上誠耕園が直面する構造的な課題です。広告費を積み上げるほど、見知らぬ顧客に届けるコストは上がり続けます。</p>
-        <div class="sub">しかし、最も信頼できる語り部が、すぐそこにいます。</div>
-        <p class="bt">井上誠耕園には165名の社員がいます。毎日この商品と向き合い、その価値を誰よりも知っている人たちが。現在は「割引」という形での購入に留まっています。これを「能動的な体験投資」へとアップデートします。</p>
+        <div class="hb">
+          <div class="hbt">何事にもフェイクが溢れる時代だからこそ、<br>本物こそが、静かに、確かに輝くのではないでしょうか。</div>
+          <div class="hbs">情報が過多になるほど、人は「誰が言っているか」より「誰が体現しているか」を信頼するようになります。井上誠耕園が30年かけて積み上げてきたものは、まさにその「体現」ではないかと感じています。</div>
+        </div>
+        <div class="s3"></div>
+        <p class="bt">通販市場の飽和と、顧客獲得コストの上昇——その問いを、この提案の出発点にしています。広告費を積み上げるほど、見知らぬ顧客に届けるコストが上がり続けるとしたら、別の方法があるのではないか。</p>
+        <div class="s3"></div>
+        <div class="sub">最も信頼できる語り部が、すぐそこにいます</div>
+        <p class="bt">井上誠耕園には160名の社員がいます。毎日この商品と向き合い、その価値を誰よりも知っている人たちが。現在は「割引購入」という形に留まっています。これを、<strong>能動的な体験投資</strong>へとアップデートできないでしょうか。</p>
         <div class="s3"></div>
         <div class="qb">
-          <div class="qt">「社員が、自分の言葉で語れるファンになっている」<br>という事実が、最も強い広告になるのではないか。</div>
+          <div class="qt">「社員が、自分の言葉で語れるファンになっている」<br>という状態が、最も誠実な広告になるのではないか。</div>
         </div>
-        <div class="s2"></div>
-        <p class="bs">広告にお金をかけるより、より良い肥料にお金をかける。その事実そのものが、最も強い広告になります。これは井上誠耕園が30年かけて体現してきた「嘘のない商い」の哲学と、完全に一致しています。</p>
       </div>
       <div>
         <div class="ncards nc3">
@@ -274,9 +248,9 @@
             <div class="nd">家族を持つ<br>働き盛りの層</div>
           </div>
         </div>
-        <div class="s2"></div>
+        <div class="s3"></div>
         <div class="ab">
-          <div class="abt">月約50万円の投資が、<br>4つのリターンを同時に生む「種まき」です。</div>
+          <div class="abt">月約48万円の投資が、<br>4つのリターンを同時に生む「種まき」になりうる。</div>
           <div class="abs">採用力強化 ／ 定着率向上 ／ PRメディア ／ B2B展開準備</div>
         </div>
         <div class="s3"></div>
@@ -292,191 +266,141 @@
       </div>
     </div>
   </div>
-  <div class="pf"><span class="pf-text">Inoue Seikouen — Employee Welfare Redesign Proposal — Hibiki Miyazaki, 2026</span></div>
+  <div class="pf"><span class="pf-text">Inoue Seikouen — Employee Experience — Deepening Proposal — Ko Miyazaki, 2026</span></div>
 </div>
 
-<!-- ========== PAGE 3: 島外81%・家族という土壌 ========== -->
+<!-- ========== PAGE 3: 家族という土壌 ========== -->
 <div class="page">
-  <div class="ph"><span class="ph-title">井上誠耕園　社員福利厚生再設計構想</span><span class="ph-num">02 / 07</span></div>
+  <div class="ph"><span class="ph-title">井上誠耕園　社員が、商品の一番の理解者になる日。</span><span class="ph-num">02 / 08</span></div>
   <div class="pb">
     <div class="eyebrow">The Human Factor</div>
     <div class="sec-title">家族という、最も深い土壌。</div>
     <div class="sec-rule"></div>
     <div class="g55">
       <div>
-        <p class="bt">社員の<strong>81%が島外出身</strong>です。故郷を離れ、小豆島で働く選択をした人たちです。平均年齢は39.8歳。多くの社員に、配偶者・子ども・離れた実家の家族がいます。</p>
+        <p class="bt">社員の<strong>81%が島外出身</strong>です。故郷を離れ、小豆島で働く選択をした人たちです。平均年齢39.8歳。多くの社員に、配偶者・子ども・離れた実家の家族がいます。</p>
         <div class="s3"></div>
         <div class="hb">
           <div class="hbt">「良い会社に勤めているね」と、<br>故郷の家族から認めてもらえること。</div>
-          <div class="hbs">これは給与や福利厚生の数字では買えない、深い帰属意識を生みます。</div>
+          <div class="hbs">これは給与や数字では買えない、深い帰属意識を生みます。</div>
         </div>
-        <div class="s3"></div>
+        <div class="s4"></div>
         <div class="sub">離島特有のリスク：配偶者の不適応による離職</div>
-        <p class="bt">島への移住を伴う採用には、本人の意欲だけでは解決できないリスクがあります。<strong>配偶者が島の生活になじめない</strong>ことを理由に、本人が離職を決意するケースが実際に起きています。これは採用コストの問題ではなく、<strong>家族ごと島を好きになってもらう</strong>という、まったく別次元の課題です。</p>
+        <p class="bt">島への移住を伴う採用には、本人の意欲だけでは届かない部分があるかもしれません。<strong>配偶者が島の生活になじめない</strong>ことが、離職の引き金になるケースがあると聞きます。もしそうだとすれば、<strong>家族ごと島を好きになってもらう</strong>という、別次元のアプローチが必要になるのではないでしょうか。</p>
         <div class="s3"></div>
         <div class="sub">自分のためにも、配偶者のためにも、実家のためにも使える</div>
-        <p class="bs">月額の上限を社員本人・配偶者・実家の家族にも使えるよう設計します。毎月、小豆島の恵みが家族のもとに届く体験は、「島で働く家族を応援したい」という気持ちを育てます。家族が井上誠耕園のファンになることが、最も静かで、最も強い定着策です。</p>
+        <p class="bs">毎月、小豆島の恵みが家族のもとに届く体験は、「島で働く家族を応援したい」という気持ちを、静かに育てるかもしれません。家族が井上誠耕園のことを好きになる日が来れば、それは数字では測れない、深い定着につながると考えています。</p>
       </div>
       <div>
         <div class="sub">社員データから見える、この提案の必然性</div>
         <div class="s2"></div>
         <table class="dt">
-          <thead><tr><th style="width:35%">データ</th><th>この提案との接続</th></tr></thead>
+          <thead><tr><th style="width:36%">データ</th><th>この提案との接続</th></tr></thead>
           <tbody>
             <tr><td><strong>島外出身 81%</strong></td><td>実家への配送オプションで、故郷の家族をファンにできる</td></tr>
             <tr><td><strong>平均年齢 39.8歳</strong></td><td>子育て・親の健康が気になる世代。健康食品は最高のギフト</td></tr>
-            <tr><td><strong>女性比率 52%</strong></td><td>スキンケア（inOli）との組み合わせで女性社員の満足度を高める</td></tr>
-            <tr><td><strong>20〜30代 52%</strong></td><td>20代30%・30代22%。将来を担う若手の早期定着が急務</td></tr>
-            <tr><td><strong>既婚・子育て世代</strong><br><span style="font-size:6.5pt;color:#888">（平均年齢39.8歳）</span></td><td>配偶者が島になじめず離職するリスクを、家族ごと喜ばせる仕組みで解消する</td></tr>
-            <tr><td><strong>休日：島外へのお出かけ</strong><br><span style="font-size:6.5pt;color:#888">（好きな過ごし方3位）</span></td><td>帰省時に実家へ持参できるギフトセットとして機能する</td></tr>
+            <tr><td><strong>女性比率 52%</strong></td><td>inOliスキンケアとの組み合わせで女性社員の満足度を高める</td></tr>
+            <tr><td><strong>20〜30代 52%</strong></td><td>将来を担う若手の早期定着が急務。帰属意識を育てる投資になる</td></tr>
+            <tr><td><strong>既婚・子育て世代</strong><br><span style="font-size:7pt;color:#888">（平均年齢39.8歳）</span></td><td>配偶者が島になじめず離職するリスクを、家族ごと喜ばせる仕組みで解消したい</td></tr>
+            <tr><td><strong>休日3位：島外へのお出かけ</strong></td><td>帰省時に実家へ持参できるギフトとして自然に機能する</td></tr>
           </tbody>
         </table>
         <div class="s3"></div>
         <div class="ab">
-          <div class="abt">社員だけでなく、家族ごと定着させる。<br>それが離島経営における、唯一の正解です。</div>
-          <div class="abs">「自分が選んだ会社が、家族のことまで考えてくれている。」<br>配偶者がそう感じた瞬間、離職のリスクは消えます。</div>
+          <div class="abt">社員だけでなく、家族ごと定着させる。<br>離島経営における、ひとつの答えがここにあるかもしれません。</div>
+          <div class="abs">「自分が選んだ会社が、家族のことまで考えてくれている。」この感情が、離職という選択を遠ざけます。</div>
         </div>
       </div>
     </div>
   </div>
-  <div class="pf"><span class="pf-text">Inoue Seikouen — Employee Welfare Redesign Proposal — Hibiki Miyazaki, 2026</span></div>
+  <div class="pf"><span class="pf-text">Inoue Seikouen — Employee Experience — Deepening Proposal — Ko Miyazaki, 2026</span></div>
 </div>
 
-<!-- ========== PAGE 新2: 使われない福利厚生 ========== -->
+<!-- ========== PAGE 4: 福利厚生の本質 ＋ 投資対効果 ========== -->
 <div class="page">
-  <div class="ph"><span class="ph-title">井上誠耕園　社員福利厚生再設計構想</span><span class="ph-num">03 / 07</span></div>
-  <div class="pb">
-    <div class="eyebrow">The Problem with Benefits</div>
-    <div class="sec-title">使われない福利厚生は、存在しないのと同じです。</div>
-    <div class="sec-rule"></div>
-    <div class="g55">
-      <div>
-        <p class="bt">多くの企業が、福利厚生に毎年多額の費用をかけています。しかし現実は厳しい。<strong>社員の7割以上が「福利厚生に不満がある」</strong>と答え、人事担当者は「予算をかけているのに利用者が年々減っている」という矛盾を抱え続けています。</p>
-        <div class="s3"></div>
-        <div class="sub">使われない理由は、いつも同じ3つです</div>
-        <div class="s2"></div>
-        <table class="dt">
-          <thead><tr><th style="width:30%">よくある失敗</th><th>実態</th></tr></thead>
-          <tbody>
-            <tr><td><strong>存在を知らない</strong></td><td>ある企業では育児休暇制度の利用率が3割未満。調査すると「制度の存在自体を知らなかった」社員が多数だった。</td></tr>
-            <tr><td><strong>使える雰囲気にない</strong></td><td>有給取得率が低い企業では「他の人に迷惑をかける」という心理的ハードルが制度の利用を阻む。</td></tr>
-            <tr><td><strong>時代に合っていない</strong></td><td>社員旅行・保養所など「組織への同化」を前提にした制度は、価値観が多様化した現代では敬遠される。</td></tr>
-          </tbody>
-        </table>
-        <div class="s3"></div>
-        <div class="qb">
-          <div class="qt">使われない制度に費用をかけることは、<br>コストを垂れ流しながら、社員の不満を育てることです。</div>
-        </div>
-        <div class="s3"></div>
-        <div class="ab">
-          <div class="abt">井上誠耕園の商品は、構造的に100%使われます。<br>食べる・使う・贈る。どれをとっても必ず消費される。</div>
-          <div class="abs">余らない。失効しない。使いにくい雰囲気も生まれない。これが「消え物」を福利厚生にする最大の強みです。</div>
-        </div>
-      </div>
-      <div>
-        <div class="sub">100%使われる健康福利厚生が秘めた、6つの価値</div>
-        <div class="s2"></div>
-        <div class="rcards" style="grid-template-columns:1fr 1fr;">
-          <div class="rc" style="border-top-color:var(--gold);">
-            <div class="rct">① 費用対効果の完全な可視化</div>
-            <div class="rcb">利用率100%は、投じた費用が100%社員に届いた証明。人事部門が最も苦手とする「福利厚生の効果測定」が初めて可能になります。</div>
-          </div>
-          <div class="rc" style="border-top-color:var(--gold);">
-            <div class="rct">② 健康への直接投資</div>
-            <div class="rcb">健康増進プログラムを導入した企業では病欠が年間20%減少し、医療費負担が10%削減されたデータもあります。食品は「使うことで体が変わる」数少ない福利厚生です。</div>
-          </div>
-          <div class="rc" style="border-top-color:var(--gold);">
-            <div class="rct">③ 生産性の向上</div>
-            <div class="rcb">健康経営への投資1ドルに対し3ドル以上のリターンという報告もあります。健康な社員はプレゼンティズム（出勤しているが不調で生産性が低い状態）を防ぎます。</div>
-          </div>
-          <div class="rc" style="border-top-color:var(--gold);">
-            <div class="rct">④ 採用・定着ブランドの構築</div>
-            <div class="rcb">求職者の約28%が企業選択で「福利厚生の充実」を重視します。100%活用される福利厚生は採用ページの数字ではなく、社員が語る「実感できる物語」になります。</div>
-          </div>
-          <div class="rc" style="border-top-color:var(--gold);">
-            <div class="rct">⑤ 健康経営優良法人への接続</div>
-            <div class="rcb">経済産業省推進の「健康経営優良法人」認定は令和6年度で約2万4,000件の申請数。実績ある健康食品の提供は、認定取得の有力な根拠になります。</div>
-          </div>
-          <div class="rc" style="border-top-color:var(--gold);">
-            <div class="rct">⑥ 公平性と一体感</div>
-            <div class="rcb">全社員が同じものを受け取り、同じ体験をする。役職・年齢・雇用形態を問わず「使える人と使えない人」が生まれない唯一の福利厚生です。</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="pf"><span class="pf-text">Inoue Seikouen — Employee Welfare Redesign Proposal — Hibiki Miyazaki, 2026</span></div>
-</div>
-
-<!-- ========== PAGE 4: 採用コストとの比較 ========== -->
-<div class="page">
-  <div class="ph"><span class="ph-title">井上誠耕園　社員福利厚生再設計構想</span><span class="ph-num">04 / 07</span></div>
+  <div class="ph"><span class="ph-title">井上誠耕園　社員が、商品の一番の理解者になる日。</span><span class="ph-num">03 / 08</span></div>
   <div class="pb">
     <div class="eyebrow">The Investment Logic</div>
-    <div class="sec-title">年間576万円の投資を、正しく評価する。</div>
+    <div class="sec-title">使われない福利厚生と、年間576万円の意味。</div>
     <div class="sec-rule"></div>
     <div class="g55">
       <div>
-        <p class="bt">160名×月額3,000円＝月約48万円、年間約576万円。これを「コスト」と見るか、「投資」と見るかで、経営判断は180度変わります。</p>
+        <div class="sub">使われない福利厚生は、存在しないのと同じです</div>
+        <p class="bt">多くの企業が福利厚生に費用をかけながら、「利用者が年々減っている」という矛盾を抱えています。存在を知らない、使える雰囲気にない、時代に合っていない——理由はいつも同じです。</p>
         <div class="s3"></div>
-        <div class="sub">採用コストとの比較</div>
+        <div class="qb">
+          <div class="qt">使われない制度に費用をかけ続けることは、<br>社員の不満を静かに育てているのかもしれません。</div>
+        </div>
+        <div class="s3"></div>
+        <p class="bs">井上誠耕園の商品は、食べる・使う・贈る、どの形であれ必ず消費されます。余らない。失効しない。使いにくい雰囲気も生まれない。全社員が同じものを受け取る<strong>公平性</strong>も、消え物ならではの強みです。</p>
+        <div class="s3"></div>
+        <div class="sub">100%使われる健康福利厚生が持つ、6つの価値</div>
         <div class="s2"></div>
+        <div class="rcards" style="grid-template-columns:1fr 1fr 1fr;">
+          <div class="rc" style="border-top-color:var(--gold);">
+            <div class="rct">費用対効果の可視化</div>
+            <div class="rcb">利用率100%は、投じた費用が100%社員に届いた証明。効果測定が初めて可能になります。</div>
+          </div>
+          <div class="rc" style="border-top-color:var(--gold);">
+            <div class="rct">健康への直接投資</div>
+            <div class="rcb">健康増進プログラムで病欠が年間20%減少、医療費が10%削減されたデータもあります。</div>
+          </div>
+          <div class="rc" style="border-top-color:var(--gold);">
+            <div class="rct">生産性の向上</div>
+            <div class="rcb">健康な社員は、出勤しながら不調で生産性が低い「プレゼンティズム」を防ぎます。</div>
+          </div>
+          <div class="rc" style="border-top-color:var(--gold);">
+            <div class="rct">採用ブランドの構築</div>
+            <div class="rcb">「毎月届く自社商品」は、求人広告では作れないブランドを生みます。</div>
+          </div>
+          <div class="rc" style="border-top-color:var(--gold);">
+            <div class="rct">健康経営優良法人</div>
+            <div class="rcb">令和6年度で約2万4,000件の申請数。実績ある健康食品の提供は認定の有力な根拠になります。</div>
+          </div>
+          <div class="rc" style="border-top-color:var(--gold);">
+            <div class="rct">公平性と一体感</div>
+            <div class="rcb">役職・年齢・雇用形態を問わず、全員が同じ体験をする。分け隔てのない福利厚生です。</div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="sub">年間576万円を「投資」として見たとき</div>
+        <p class="bt">160名×月3,000円＝月約48万円、年間約576万円。これを「コスト」と見るか「投資」と見るかで、この数字の意味はまったく変わります。</p>
+        <div class="s3"></div>
         <div class="cost-grid">
           <div class="cost-card bad">
-            <div class="ccv">100万円</div>
-            <div class="ccl">中途採用1名のコスト</div>
-            <div class="ccd">エージェント手数料・選考・オンボーディングを含む業界平均相場。採用しても早期離職すれば全額消える。</div>
+            <div class="ccv">100万円〜</div>
+            <div class="ccl">中途採用の基本コスト</div>
+            <div class="ccd">エージェント手数料・選考・オンボーディング等の業界平均。これは「入口」のコストに過ぎません。</div>
           </div>
           <div class="cost-card bad">
-            <div class="ccv">80万円</div>
-            <div class="ccl">新卒採用1名のコスト</div>
-            <div class="ccd">求人広告・合同説明会・内定者フォロー等を含む概算。3年以内離職率30%超という現実もある。</div>
+            <div class="ccv">+150万円〜</div>
+            <div class="ccl">離島移住の追加コスト</div>
+            <div class="ccd">引越し・フェリー輸送・住居初期費用・車の購入が必須。合計で1名あたり<strong style="color:#CC4444;">250〜400万円</strong>が現実的な数字です。</div>
           </div>
-          <div class="cost-card best">
-            <div class="ccv">約3.5万円</div>
+          <div class="cost-card good">
+            <div class="ccv">約3.6万円</div>
             <div class="ccl">1名あたりの年間投資額</div>
-            <div class="ccd">採用コストの1/23〜1/29。社員1名が1年多く在籍するだけで、投資額は完全に回収されます。</div>
+            <div class="ccd">移住コスト込みの採用総額の<strong>1/70〜1/110</strong>。1名の定着が、年間投資額全体を上回る価値を持つ可能性があります。</div>
           </div>
         </div>
         <div class="s3"></div>
         <div class="qb">
-          <div class="qt">1名の離職を防ぐだけで、<br>年間投資額の16〜28名分を回収できます。</div>
-        </div>
-      </div>
-      <div>
-        <div class="sub">年間590万円が生む、複数のリターン</div>
-        <div class="s2"></div>
-        <div class="rcards" style="grid-template-columns:1fr 1fr;">
-          <div class="rc">
-            <div class="rct">離職防止</div>
-            <div class="rcb">月初の体験とキャリーオーバーが「来月も楽しみ」という感情を生む。退職を考える月末の心理を月初に相殺します。</div>
-          </div>
-          <div class="rc">
-            <div class="rct">採用ブランディング</div>
-            <div class="rcb">「社員に毎月自社商品を届けている農園」という事実は、求人広告では買えないブランドを作ります。</div>
-          </div>
-          <div class="rc">
-            <div class="rct">配偶者の定着支援</div>
-            <div class="rcb">配偶者の「島になじめない」という不満が離職の引き金になります。家族ごと喜ばせる商品が毎月届くことで、その不満を喜びに変えます。</div>
-          </div>
-          <div class="rc">
-            <div class="rct">PRメディア効果</div>
-            <div class="rcb">プレスリリース一本で広告費ゼロの露出が狙えます。将来のB2B展開の実証データにもなります。</div>
-          </div>
+          <div class="qt">離島採用の総コストを踏まえると、<br>1名の定着が年間投資額全体を上回る価値を持つ可能性があります。</div>
         </div>
         <div class="s3"></div>
         <div class="ab">
-          <div class="abt">最高の肥料は、土の外には売っていません。<br>まず足元の土壌を豊かにすることが、すべての始まりです。</div>
+          <div class="abt">最高の肥料は、土の中にしか効きません。<br>まず足元の土壌を豊かにすることが、すべての始まりではないでしょうか。</div>
         </div>
       </div>
     </div>
   </div>
-  <div class="pf"><span class="pf-text">Inoue Seikouen — Employee Welfare Redesign Proposal — Hibiki Miyazaki, 2026</span></div>
+  <div class="pf"><span class="pf-text">Inoue Seikouen — Employee Experience — Deepening Proposal — Ko Miyazaki, 2026</span></div>
 </div>
 
-<!-- ========== PAGE 5: 最初の一手・制度設計 ========== -->
+<!-- ========== PAGE 5: 制度設計 ========== -->
 <div class="page">
-  <div class="ph"><span class="ph-title">井上誠耕園　社員福利厚生再設計構想</span><span class="ph-num">05 / 07</span></div>
+  <div class="ph"><span class="ph-title">井上誠耕園　社員が、商品の一番の理解者になる日。</span><span class="ph-num">04 / 08</span></div>
   <div class="pb">
     <div class="eyebrow">The First Step</div>
     <div class="sec-title">最初の一手。制度設計。</div>
@@ -488,38 +412,40 @@
         <table class="dt">
           <thead><tr><th style="width:22%">項目</th><th style="width:42%">内容</th><th>理由</th></tr></thead>
           <tbody>
-            <tr>
-              <td>提供形式</td>
-              <td>月額3,000円分の自社商品を無償提供</td>
-              <td>割引→能動的体験投資へのアップデート</td>
-            </tr>
-            <tr>
-              <td>使い方</td>
-              <td>自分用＋実家への配送も選択可能</td>
-              <td>島外81%の社員の家族をファンにする</td>
-            </tr>
-            <tr>
-              <td>選び方</td>
-              <td>ポータルで自由選択＋おまかせガチャ</td>
-              <td>選ぶ喜びと出会う喜びを両立</td>
-            </tr>
-            <tr>
-              <td>配送</td>
-              <td>月初に届く（オフィス一括 or 自宅）</td>
-              <td>月初に「今月も頑張ろう」の感情を植える</td>
-            </tr>
-            <tr>
-              <td>繰越制度</td>
-              <td>最大3ヶ月キャリーオーバー可能</td>
-              <td>「来月も楽しみ」という離職防止フック</td>
-            </tr>
-            <tr>
-              <td>ギフト機能</td>
-              <td>母の日等に定価でギフト注文可能</td>
-              <td>信頼が購買に変わる広告費ゼロの拡散</td>
-            </tr>
+            <tr><td>提供形式</td><td>月額3,000円分の自社商品を無償提供</td><td>割引から能動的体験投資へのアップデート</td></tr>
+            <tr><td>使い方</td><td>自分用 ＋ 実家・配偶者への配送も選択可</td><td>島外81%の社員の家族をファンにする</td></tr>
+            <tr><td>選び方</td><td>ポータルで自由選択 ＋ おまかせガチャ</td><td>普段選ばない商品との出会い。価格以上の商品が届く可能性</td></tr>
+            <tr><td>配送タイミング</td><td>月初に届く（オフィス一括 or 自宅）</td><td>月初に「今月も頑張ろう」の感情を植える</td></tr>
+            <tr><td>繰越制度</td><td>最大3ヶ月キャリーオーバー可能</td><td>来月へは期待が離職防止フック</td></tr>
+            <tr><td>ギフト機能</td><td>母の日等に定価でギフト注文可能</td><td>信頼が購買に変わる広告費ゼロの拡散</td></tr>
           </tbody>
         </table>
+        <div class="s4"></div>
+        <div class="sub">6次産業だからこそ作れる、本物の体験福利厚生</div>
+        <p class="bs">農業・加工・観光・食事・宿泊——井上誠耕園はそのすべてを自前で持つ6次産業企業です。この強みを活かせば、どの福利厚生サービスにも真似できない体験を作ることができます。</p>
+        <div class="s2"></div>
+        <div class="rcards" style="grid-template-columns:1fr 1fr 1fr;">
+          <div class="rc" style="border-top-color:var(--gold);">
+            <div class="rct">🍊小豆島ペアご招待</div>
+            <div class="rcb">食事・宿泊つきで小豆島へ。島外出身81%の社員が、家族や配偶者を連れて島を好きになる機会になります。</div>
+          </div>
+          <div class="rc" style="border-top-color:var(--gold);">
+            <div class="rct">🌿オリーブ摘み体験</div>
+            <div class="rcb">収穫の季節に農園へ。自分が使っている商品の原点に触れる体験は、商品への愛着と語る言葉を生みます。</div>
+          </div>
+          <div class="rc" style="border-top-color:var(--gold);">
+            <div class="rct">✨豪華ガチャの可能性</div>
+            <div class="rcb">月額3,000円の枠を超えた限定・高額品が当たる可能性も。毎月の「もしかしたら」の期待感も離職防止フック。</div>
+          </div>
+        </div>
+        <div class="s3"></div>
+        <div class="hb">
+          <div class="hbt">「うちの会社の福利厚生、小豆島に行けるんだよ。」<br>この一言が、採用広告より深く届きます。</div>
+          <div class="hbs">体験は語られます。語られたものは信頼になります。6次産業の強みを福利厚生に変換することで、他社が予算をかけても絶対に作れないブランドが生まれます。</div>
+        </div>
+        <div class="s4"></div>
+        <div class="sub">オリーブで鞣した本革ケースという「聖域」</div>
+        <p class="bs">オリーブで鞣した本革スタンドケースを、福利厚生の限定アイテムとして開発できないでしょうか。オイルを使い切っても、上質なケースは食卓に残ります。<strong>「ケースがあるから、また補充したい」</strong>——この感情が、次の購買を自然に生み出します。使い込むほど深まる経年変化は、商品を使い続ける時間と重なり、ケースと共に「育っていく」体験になります。</p>
         <div class="s3"></div>
         <div class="qb">
           <div class="qt">自社商品を社員に届けることは、<br>自社商品への絶対的な自信の現れです。</div>
@@ -546,119 +472,176 @@
             <div class="pbc"><span class="pp">3年〜</span><div class="pd">JGFNと連携。デジタルカードで全国の農家が繋がる。日本の農業を「旅できる」体験へ。</div><div class="po">→ 農業インフラへ</div></div>
           </div>
         </div>
-        <div class="s3"></div>
-        <div class="sub">本革ケースという「聖域」</div>
-        <p class="bs">オリーブオイル専用の本革スタンドケースを福利厚生の特別品として開発。食卓やオフィスに「置きたくなる」デザインは、商品が消えた後も井上誠耕園との関係が続く仕組みを生みます。来客の「それ何？」という一言から、口コミが始まります。</p>
+        <div class="s4"></div>
+        <div class="rcards" style="grid-template-columns:1fr 1fr;">
+          <div class="rc">
+            <div class="rct">離職防止</div>
+            <div class="rcb">月初の体験とキャリーオーバーが「来月も楽しみ」という感情を生みます。退職を考える月末の心理を月初に相殺します。</div>
+          </div>
+          <div class="rc">
+            <div class="rct">配偶者の定着支援</div>
+            <div class="rcb">家族ごと喜ばせる商品が毎月届くことで、配偶者の「島になじめない」という不満を喜びに変えます。</div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
-  <div class="pf"><span class="pf-text">Inoue Seikouen — Employee Welfare Redesign Proposal — Hibiki Miyazaki, 2026</span></div>
+  <div class="pf"><span class="pf-text">Inoue Seikouen — Employee Experience — Deepening Proposal — Ko Miyazaki, 2026</span></div>
 </div>
 
-
-<!-- ========== PAGE 新: 土壌が熟えたとき、外に出る合図が来る ========== -->
+<!-- ========== PAGE 6: 社員が広告になる ========== -->
 <div class="page">
-  <div class="ph"><span class="ph-title">井上誠耕園　社員福利厚生再設計構想</span><span class="ph-num">06 / 07</span></div>
+  <div class="ph"><span class="ph-title">井上誠耕園　社員が、商品の一番の理解者になる日。</span><span class="ph-num">05 / 08</span></div>
   <div class="pb">
     <div class="eyebrow">The Living Proof — 生きた証明</div>
     <div class="sec-title">社員が、最も説得力のある広告になる。</div>
     <div class="sec-rule"></div>
     <div class="g55">
       <div>
-        <p class="bt">社員全員が自社商品を日常的に使い、<strong>健康で、美しく、若く、輝いている</strong>。そして商品の知識と活用法において、どこの誰よりも長けている。この状態こそが、外販への準備が整った唯一の証明です。</p>
+        <p class="bt">社員全員が自社商品を日常的に使い、<strong>健康的で、若々しく、美しく、輝いている</strong>。そして商品の知識と活用法において、誰よりも自然に語れる状態になっている。そのとき初めて、外販への準備が本当に整ったと言えるのではないでしょうか。</p>
         <div class="s3"></div>
         <div class="hb">
-          <div class="hbt">「この商品を作っている人たちが、<br>こんなに健康で、美しく、輝いている。」</div>
-          <div class="hbs">これは、どんな予算をかけた広告コピーでも再現できない言葉です。社員の存在そのものが、最も誠実な証明になります。</div>
+          <div class="hbt">「この商品を届けている人たちが、素敵な笑顔で、輝いている。」</div>
+          <div class="hbs">どんな予算をかけた広告コピーも、おそらくこの一言には敵わない。社員の存在そのものが、最も誠実な証言になりうると考えています。</div>
         </div>
-        <div class="s3"></div>
+        <div class="s4"></div>
         <div class="sub">プライバシーを守りながら「変化」を可視化する</div>
-        <p class="bs">個人の健康データは完全に保護します。ただし、<strong>集団としての平均値の推移</strong>は、会社全体の健康投資の成果として開示できます。導入前と導入後の集団平均を比較することで、「井上誠耕園の商品が社員を変えた」という実証データが生まれます。</p>
-        <div class="s3"></div>
-        <div class="sub">自己申告アンケートによる定性データ</div>
-        <p class="bs">「体調の変化」「肌の変化」「睡眠の質」「商品への理解度」を半年ごとに匿名で収集します。数値化しにくい変化も、社員自身の言葉として蓄積することで、外販時の最も強い「証言」になります。</p>
+        <p class="bs">個人の健康データは完全に保護します。ただし<strong>集団としての平均値の推移</strong>は、会社全体の健康投資の成果として開示できます。導入前と導入後の集団平均を比較することで、「井上誠耕園の商品が社員を変えた」という実証データが生まれます。自己申告アンケートによる定性データも、外販時の最も強い「証言」になります。</p>
+        <div class="s4"></div>
+        <div class="ab">
+          <div class="abt">社員が「広告」になれた日が、<br>外販を考え始める合図になるかもしれません。</div>
+          <div class="abs">「我が社の社員が、身をもって体験した商品を、御社の社員にも届けさせてください。」<br>この言葉に数字が添えられたとき、どんな説明よりも深く届くのではないでしょうか。</div>
+        </div>
       </div>
       <div>
         <div class="sub">計測する7つの指標</div>
         <div class="s2"></div>
         <table class="dt">
           <thead>
-            <tr>
-              <th style="width:4%"></th>
-              <th style="width:34%">指標</th>
-              <th style="width:28%">計測方法</th>
-              <th>外販時の活用・意味</th>
-            </tr>
+            <tr><th style="width:4%"></th><th style="width:35%">指標</th><th>計測方法・外販時の活用</th></tr>
           </thead>
           <tbody>
             <tr>
-              <td style="text-align:center;font-size:8pt;">①</td>
-              <td><strong>健康診断の集団平均値</strong><br><span style="font-size:6pt;color:#888">コレステロール・血圧・BMI等</span></td>
-              <td>年1回の健診データを匿名集計（導入前後で比較）</td>
-              <td>「導入後、集団平均値が改善した」という客観的な数値実績</td>
+              <td style="text-align:center;font-weight:700;">①</td>
+              <td><strong>健康診断の集団平均値</strong><br><span style="font-size:7pt;color:#888">コレステロール・血圧・BMI等</span></td>
+              <td>年1回の健診データを匿名集計。「導入後、集団平均値が改善した」という客観的実績に</td>
             </tr>
             <tr>
-              <td style="text-align:center;font-size:8pt;">②</td>
-              <td><strong>体調・美容の自己申告</strong><br><span style="font-size:6pt;color:#888">肌・体調・睡眠・活力の変化</span></td>
-              <td>半年ごとの匿名アンケート（5段階評価）</td>
-              <td>「社員の◯%が肌と体調の変化を実感」という定性的証言</td>
+              <td style="text-align:center;font-weight:700;">②</td>
+              <td><strong>体調・美容の自己申告</strong><br><span style="font-size:7pt;color:#888">肌・体調・睡眠・活力の変化</span></td>
+              <td>半年ごとの匿名アンケート。「社員の◯%が変化を実感」という定性的証言に</td>
             </tr>
             <tr>
-              <td style="text-align:center;font-size:8pt;">③</td>
-              <td><strong>離職率・在籍継続率</strong><br><span style="font-size:6pt;color:#888">導入前後の比較</span></td>
-              <td>人事データによる年次比較（制度導入前後）</td>
-              <td>「定着率が上がった」という最も強い経営指標。採用コスト削減の直接的証拠</td>
+              <td style="text-align:center;font-weight:700;">③</td>
+              <td><strong>離職率・在籍継続率</strong><br><span style="font-size:7pt;color:#888">導入前後の比較</span></td>
+              <td>人事データによる年次比較。「定着率が上がった」という最も強い経営指標に</td>
             </tr>
             <tr>
-              <td style="text-align:center;font-size:8pt;">④</td>
-              <td><strong>家族からの会社評価</strong><br><span style="font-size:6pt;color:#888">配偶者・実家家族の声</span></td>
-              <td>任意参加の家族向け匿名アンケート（年1回）</td>
-              <td>「家族が会社を誇りに思っている」という定性データ。離島特有の配偶者定着問題への回答になる</td>
+              <td style="text-align:center;font-weight:700;">④</td>
+              <td><strong>家族からの会社評価</strong><br><span style="font-size:7pt;color:#888">配偶者・実家家族の声</span></td>
+              <td>任意参加の家族向け匿名アンケート。「家族が会社を誇りに思っている」という定性データに</td>
             </tr>
             <tr>
-              <td style="text-align:center;font-size:8pt;">⑤</td>
-              <td><strong>商品知識・活用度</strong><br><span style="font-size:6pt;color:#888">使い方・レシピの習熟度</span></td>
-              <td>任意参加の商品理解度チェック（ゲーム形式）</td>
-              <td>「社員全員が語り部になれる」状態の証明</td>
+              <td style="text-align:center;font-weight:700;">⑤</td>
+              <td><strong>商品知識・活用度</strong><br><span style="font-size:7pt;color:#888">使い方・レシピの習熟度</span></td>
+              <td>任意参加の商品理解度チェック（ゲーム形式）。「社員が語り部になれる」状態の証明に</td>
             </tr>
             <tr>
-              <td style="text-align:center;font-size:8pt;">⑥</td>
-              <td><strong>社内口コミ・推奨行動</strong><br><span style="font-size:6pt;color:#888">「人に勧めた」という行動</span></td>
-              <td>SNS投稿数・ギフト注文件数・紹介経由購入数</td>
-              <td>「自発的な布教が起きている」という行動データ</td>
+              <td style="text-align:center;font-weight:700;">⑥</td>
+              <td><strong>社内口コミ・推奨行動</strong><br><span style="font-size:7pt;color:#888">「人に勧めた」行動</span></td>
+              <td>SNS投稿数・ギフト注文件数。「自発的な布教が起きている」という行動データに</td>
             </tr>
             <tr>
-              <td style="text-align:center;font-size:8pt;">⑦</td>
-              <td><strong>制度エンゲージメント</strong><br><span style="font-size:6pt;color:#888">利用率・継続率・満足度</span></td>
-              <td>ポータルのログイン率・選択率・キャリーオーバー活用率</td>
-              <td>「100%活用された福利厚生」という他社にない利用実績</td>
+              <td style="text-align:center;font-weight:700;">⑦</td>
+              <td><strong>制度エンゲージメント</strong><br><span style="font-size:7pt;color:#888">利用率・継続率・満足度</span></td>
+              <td>ポータルのログイン率・選択率。「100%活用された福利厚生」という他社にない実績に</td>
             </tr>
           </tbody>
         </table>
+      </div>
+    </div>
+  </div>
+  <div class="pf"><span class="pf-text">Inoue Seikouen — Employee Experience — Deepening Proposal — Ko Miyazaki, 2026</span></div>
+</div>
+
+<!-- ========== PAGE 7: JGFN ========== -->
+<div class="page">
+  <div class="ph"><span class="ph-title">井上誠耕園　社員が、商品の一番の理解者になる日。</span><span class="ph-num">06 / 08</span></div>
+  <div class="pb">
+    <div class="eyebrow">The Vision — JGFN &amp; Beyond</div>
+    <div class="sec-title">広告費とは何か、を考えたことがあります。</div>
+    <div class="sec-rule"></div>
+    <div class="g55">
+      <div>
+        <p class="bt">広告に長年携わってきた立場から、ひとつの仮説をお伝えします。どれほど良いものでも、その価値が届かないとき、人は広告費を使います。広告費とは、信頼が届くまでの距離を埋めるためのコストとも言えます。信頼が十分に育った場所では、広告の必要性は自然と薄れていく——そういう側面があるのではないかと感じています。</p>
         <div class="s3"></div>
-        <div class="ab">
-          <div class="abt">社員が「広告」になった日が、<br>外販解禁の合図です。</div>
-          <div class="abs">「我が社の社員が、身をもって証明した商品を、御社の社員にも届けさせてください。」<br>数字とともにこの言葉を添えたとき、それ以上強いセールストークは存在しません。</div>
+        <div class="hb">
+          <div class="hbt">良い会社ほど、求人広告に頼る必要がない。<br>誠実な農家ほど、広告費を持てないことがある。</div>
+          <div class="hbs">JGFNに集う農家の多くは、井上誠耕園のような経済規模を持ちません。誠実に土を耕し、信頼できる作物を育てながらも、広告費を捻出できずに埋もれている方々がいるとすれば、何かできることがあるかもしれません。</div>
+        </div>
+        <div class="s4"></div>
+        <div class="sub">JGFNで目指したいのは「信頼の流通インフラ」です</div>
+        <p class="bt">商品が売れる理由を大きく分けるとすれば、「知られているから」と「信頼されているから」があります。井上誠耕園が30年かけて積み上げてきたのは後者——信頼の蓄積ではないかと感じています。その仕組みを、広告費を持てない全国の誠実な農家にも使えるようにできないか。まず井上誠耕園で実証し、その信頼の傘の下で、各地の農家が本質的な価値で評価される環境を、少しずつ広げていけないでしょうか。</p>
+        <div class="s3"></div>
+        <p class="bs" style="color:#884400; background:#fff8f0; padding:3mm; border-left:2px solid #cc8844;">一方で、「信頼を可視化する」ことは簡単ではありません。数値化しようとすると操作されるリスクも生まれます。だからこそ、キュレーターとしての<strong>井上誠耕園の目利き力と品質への姿勢</strong>が、この構想の土台になると考えています。</p>
+      </div>
+      <div>
+        <div class="sub">三方良しの構造設計</div>
+        <div class="s2"></div>
+        <table class="dt">
+          <thead><tr><th style="width:24%">誰にとって</th><th>得られる価値</th></tr></thead>
+          <tbody>
+            <tr><td><strong>消費者・社員</strong></td><td>信頼できる農家の顔と物語が見える購買体験。広告費をかけずとも「本物」だから流通している商品と出会える。</td></tr>
+            <tr><td><strong>JGFN農家</strong></td><td>広告費ゼロで、誠実さと品質だけで正しく評価される販路。井上誠耕園の信頼という「傘」の下で、自分たちの物語を届けられる。</td></tr>
+            <tr><td><strong>井上誠耕園</strong></td><td>プラットフォームのキュレーターとして、参加農家の品質を担保することで自社ブランドの信頼も強化される。</td></tr>
+            <tr><td><strong>日本の農業</strong></td><td>「誠実に耕せば、広告費なしでも生きていける」という証明が、後継者不足・廃業リスクを抱える農家への希望になる。</td></tr>
+          </tbody>
+        </table>
+        <div class="s3"></div>
+        <div class="hb" style="padding:3mm 5mm;">
+          <div class="hbt" style="font-size:9.5pt;">井上誠耕園で生まれた物語が、小豆島を、農業を、地域を、変えていく。</div>
+          <div class="hbs">過度な広告がなくても商品が売れ続ける。採用に困らない企業になる。小豆島への移住のハードルが下がり、島で暮らしたいと自然に思える人が増える。——そういう物語がひとつ完成したとき、それは全国の人口減少に悩む地域や、誠実に仕事に向き合う農家への、ひとつの答えになるかもしれません。農家という働き方が、再び脚光を浴びる日のために。</div>
+        </div>
+        <div class="s2"></div>
+        <div class="ab" style="padding:3.5mm 6mm;">
+          <div class="abt" style="font-size:9pt;">JGFNも、そういう小さな出発点から始まるのかもしれません。</div>
+          <div class="abs">「広告ではなく信頼で届く」ことを、まず内側で証明する。その積み重ねが、いつか全国の誠実な農家への灯台になればと思っています。</div>
+        </div>
+        <div class="s2"></div>
+        <div style="text-align:right; padding-bottom:1mm;">
+          <span class="tag">信頼の流通インフラ</span>
+          <span class="tag">三方良し</span>
+          <span class="tag">JGFN</span>
+          <span class="tag">移住・定住促進</span>
+          <span class="tag">農業の再評価</span>
+          <span class="tag">地域の持続</span>
         </div>
       </div>
     </div>
   </div>
-  <div class="pf"><span class="pf-text">Inoue Seikouen — Employee Welfare Redesign Proposal — Hibiki Miyazaki, 2026</span></div>
+  <div class="pf"><span class="pf-text">Inoue Seikouen — Employee Experience — Deepening Proposal — Ko Miyazaki, 2026</span></div>
 </div>
 
-<!-- ========== PAGE 6: 未来への接続 ========== -->
+<!-- ========== PAGE 8: 未来への接続（B2B・デジタルカード） ========== -->
 <div class="page">
-  <div class="ph"><span class="ph-title">井上誠耕園　社員福利厚生再設計構想</span><span class="ph-num">07 / 07</span></div>
+  <div class="ph"><span class="ph-title">井上誠耕園　社員が、商品の一番の理解者になる日。</span><span class="ph-num">07 / 08</span></div>
   <div class="pb">
     <div class="eyebrow">The Future</div>
     <div class="sec-title">未来への接続。</div>
     <div class="sec-rule"></div>
     <div class="g55">
       <div>
-        <div class="sub">B2B福利厚生サブスクへの展開</div>
-        <p class="bs">社内実証が積み上がったとき、「わが社の社員がこれほど変わった」という実績を持って他社へ展開します。ベネフィット・ワン等の総合福利厚生は「選択肢の広さ」で戦います。私たちは「体験の深さ」と「物語」で戦います。土俵が違います。</p>
-        <div class="s2"></div>
-        <table class="dt" style="font-size:7pt;">
+        <div class="sub">B2B福利厚生サブスク——購入者層の高齢化への、構造的な回答</div>
+        <p class="bt">井上誠耕園が向き合っている課題のひとつに、<strong>購入者層の高齢化</strong>があります。通販の主要顧客が年齢を重ねていくとき、次の世代との接点をどう作るか。これは多くの老舗ブランドが抱える、静かで深刻な問いです。</p>
+        <div class="s3"></div>
+        <div class="hb" style="padding:3mm 5mm;">
+          <div class="hbt" style="font-size:9.5pt;">福利厚生モデルは、働き盛りの世代の日常の中枢へ、商品を届ける仕組みです。</div>
+          <div class="hbs">30〜40代の社員が毎月商品に触れ、家族に届け、同僚と語る。広告で「知ってもらう」のではなく、生活の中で「好きになってもらう」——この違いは、長期的な顧客との関係において、決定的な差になるかもしれません。</div>
+        </div>
+        <div class="s3"></div>
+        <p class="bt">社内実証が積み上がったとき、「わが社の社員がこれほど変わった」という実績を持って他社へ展開します。ベネフィット・ワン等の総合福利厚生は「選択肢の広さ」で戦います。私たちは「体験の深さ」と「物語」で戦います。土俵が違います。</p>
+        <div class="s3"></div>
+        <table class="dt">
           <thead><tr><th>プラン</th><th>月額（1名）</th><th>主な内容</th></tr></thead>
           <tbody>
             <tr><td>スタンダード</td><td>¥1,500〜2,000</td><td>食品小瓶またはミニセット。導入の入口。</td></tr>
@@ -667,17 +650,24 @@
           </tbody>
         </table>
         <div class="s3"></div>
-        <div class="sub">デジタルカード × JGFNへの接続</div>
-        <p class="bs">商品が届くたびにデジタルカードが解放。農園の物語と季節の風景が宿り、企業を越えてトレードできます。北海道のじゃがいもカードと井上誠耕園のオイルカードが揃うと新しいレシピが解放される。日本の農業ネットワーク（JGFN）を「体験できる文化」として届けます。</p>
+        <div class="ab" style="padding:3.5mm 6mm;">
+          <div class="abt" style="font-size:9pt;">広告に使う予算を、より良いモノづくりへ。<br>それ自体が、井上誠耕園にとっての最大の広告になり得る。</div>
+          <div class="abs">誇張の必要がないほど本物であること。その事実が口コミとなり、信頼となり、次の世代の顧客を静かに育てていく——そういう循環が、この構想の先にあると考えています。</div>
+        </div>
+        <div class="s2"></div>
+        <div class="sub">購入体験が「ストーリーのコレクション」になる</div>
+        <p class="bt">商品が届くたびに、その農家の物語・産地・季節の背景がアカウントへ届きます。買って終わりではなく、<strong>自分がどんな農家を、どんな想いで支えてきたか</strong>が、いつでも見返せる形で蓄積されていく。この体験の積み重ねが、農家への共感と信頼を深めます。</p>
+        <div class="s2"></div>
+        <p class="bs">集まったストーリーはコレクションとして手元に残り、農家×農家の組み合わせで新しいレシピが解放されるなど、知る喜びと使う喜びが連鎖する設計を想定しています。日本中の「誠実に耕されている農園」が、一枚ずつ手元に集まっていく——そういう体験が、JGFNという農業ネットワークへの入口になります。</p>
         <div class="s3"></div>
-        <div class="flow" style="font-size:6.5pt;">
-          <div class="fi"><div class="fit" style="font-size:6.5pt;">商品が届く<br>↓カード解放</div></div>
-          <div class="fa" style="font-size:9pt;">→</div>
-          <div class="fi"><div class="fit" style="font-size:6.5pt;">農園の<br>物語に触れる</div></div>
-          <div class="fa" style="font-size:9pt;">→</div>
-          <div class="fi"><div class="fit" style="font-size:6.5pt;">カードを<br>トレード</div></div>
-          <div class="fa" style="font-size:9pt;">→</div>
-          <div class="fi hl"><div class="fit" style="font-size:6.5pt;">JGFN農家へ<br>繋がる</div></div>
+        <div class="flow">
+          <div class="fi"><div class="fit">商品が届く</div></div>
+          <div class="fa">→</div>
+          <div class="fi"><div class="fit">農家の物語が<br>アカウントに届く</div></div>
+          <div class="fa">→</div>
+          <div class="fi"><div class="fit">ストーリーが<br>蓄積・閲覧できる</div></div>
+          <div class="fa">→</div>
+          <div class="fi hl"><div class="fit">農家への共感と<br>信頼が育つ</div></div>
         </div>
       </div>
       <div>
@@ -690,9 +680,9 @@
             <div class="fcb">二十四節気に合わせて変化するプラットフォーム。「今しか出会えない」愛着を育む設計。</div>
           </div>
           <div class="fc">
-            <span class="fci">🃏</span>
-            <div class="fct">コレクションが繋ぐ縁</div>
-            <div class="fcb">カードを集めるほど日本の農業地図が完成。集めた縁が食卓の体験になる。</div>
+            <span class="fci">🗂</span>
+            <div class="fct">ストーリーが蓄積される</div>
+            <div class="fcb">購入のたびに農家の物語が手元に届く。見返すほど、食卓の背景が豊かになる。</div>
           </div>
           <div class="fc">
             <span class="fci">🍽</span>
@@ -700,47 +690,39 @@
             <div class="fcb">農家×農家のカード組み合わせで特別レシピが解放。遊びながら農業を支える体験。</div>
           </div>
         </div>
-        <div class="s3"></div>
+        <div class="s4"></div>
         <div class="ab">
-          <div class="abt">祖父の時代、300件のリストから通販が始まりました。<br>この構想は、デジタル時代の「300件のリスト」です。</div>
-          <div class="abs">最初は小さく。一人一人との縁を丁寧に育てることで、日本中の食卓に小豆島が届く日が来ると、確信しています。</div>
-        </div>
-        <div class="s3"></div>
-        <div style="text-align:right;">
-          <span class="tag">採用ブランディング</span>
-          <span class="tag">離職防止</span>
-          <span class="tag">健康経営</span>
-          <span class="tag">島外社員・実家配送</span>
-          <span class="tag">JGFN</span>
-          <span class="tag">地方創生</span>
+          <div class="abt">祖父の時代、300件のリストから通販が始まりました。<br>JGFNも、そういう小さな出発点から始まるのかもしれません。</div>
+          <div class="abs">最初は小さく。一人一人との縁を丁寧に育てることで、日本中の食卓に小豆島が届く日が来ると思っています。</div>
         </div>
       </div>
     </div>
   </div>
-  <div class="pf"><span class="pf-text">Inoue Seikouen — Employee Welfare Redesign Proposal — Hibiki Miyazaki, 2026</span></div>
+  <div class="pf"><span class="pf-text">Inoue Seikouen — Employee Experience — Deepening Proposal — Ko Miyazaki, 2026</span></div>
 </div>
 
-<!-- ========== PAGE 7: CLOSING ========== -->
+<!-- ========== PAGE 9: CLOSING ========== -->
 <div class="page closing">
-  <div class="cbg"></div>
-  <div class="clbar"></div>
-  <div class="ctop"></div>
-  <div class="cbot"></div>
+  <div class="cbg"></div><div class="clbar"></div><div class="ctop"></div><div class="cbot"></div>
   <div class="clc">
     <div class="clen">In Closing</div>
     <div class="clt">
       私が今、代理店でもなく、コンサルの席でもなく、<br>
-      ここに座っている理由。
+      ここに座らせていただいている理由。
     </div>
     <div class="clr"></div>
     <div class="clb">
-      自分が心から信じられないものは、どれほど技術を尽くしても、本当の意味では届かない。<br>
-      20年間の経験を経て辿り着いた、私の結論です。<br><br>
-      井上誠耕園の商品に触れたとき、そして園主が守り続けてきた「嘘のない姿勢」を知ったとき、<br>
-      ここなら私の情熱を100%注ぎ込める、いや、注ぎ込みたいと確信しました。<br><br>
-      代理店でもコンサルでもなく、当事者として、ここに座らせていただいています。
+      自分が心から信じられないものは、どれほど技術を尽くしても、本当の意味では届きにくい。<br>
+      20年間の経験の中で、少しずつ気づいてきたことです。<br><br>
+      農家という働き方が、もっと報われる時代になってほしいと思っています。<br>
+      誠実に土を耕し、本物を育てている人たちが、広告費の有無に関わらず、<br>
+      正しく評価される仕組みが、この国のどこかに必要だと感じています。<br><br>
+      井上誠耕園の商品や、園主が守り続けてきた「嘘のない姿勢」を知ったとき、<br>
+      ここから、その物語を始められるかもしれないと思いました。<br><br>
+      フェイクが溢れる時代だからこそ、本物がより輝きを放つ。<br>
+      その未来を、一緒に耕させていただけたら、これほど嬉しいことはありません。
     </div>
-    <div class="cla">Hibiki Miyazaki — March, 2026</div>
+    <div class="cla">Ko Miyazaki — March, 2026</div>
   </div>
 </div>
 
